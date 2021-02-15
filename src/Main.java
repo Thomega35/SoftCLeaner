@@ -1,10 +1,15 @@
+import javax.swing.*;
+//import java.awt.*;
 
 public class Main {
-
+	
+	public static JFrame window;
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//Exemple code
-		//Modification pour valentin
+		
+		Display.init();
+		Display.update();
+		//System.out.println("hello");
 	}
 
 }
