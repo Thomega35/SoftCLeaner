@@ -19,7 +19,7 @@ public class Display {
 	public static void init() {
 		
 		//FRAME 
-		Main.window = new JFrame("Boite de Dialogue");
+		Main.window = new JFrame("SoftCleaner V1.0");
 		Main.window.setSize(400,210);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
