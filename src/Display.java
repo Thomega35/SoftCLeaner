@@ -1,35 +1,76 @@
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.Label;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class Display {
 	
 	public static void init() {
+		
+		//FRAME 
 		Main.window = new JFrame("Boite de Dialogue");
-		Main.window.setSize(1000,500);
-		ImageIcon fingerIco = new ImageIcon("src/Images/u_put_the_finger_on_it.jpg");
-		Image finger = fingerIco.getImage().getScaledInstance( 100, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-		fingerIco = new ImageIcon(finger);
-		JButton bouton = new JButton("Cliquez-moi",fingerIco);
-		bouton.setPreferredSize(new Dimension(100, 100));
-	    JButton b2 =new JButton("Mon bouton");
-	    JButton b3 =new JButton("TEst");
-		JPanel panneau = new JPanel();
-		JPanel panneau_interieur = new JPanel();
-		panneau.add(bouton);
-		Main.window.setContentPane(panneau);
-	    Main.window.getContentPane().add(b2);
-	    panneau.add(b3);
-	    panneau.add(panneau_interieur);
+		Main.window.setSize(400,210);
+		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
+		
+		//Creation Panels
+		JPanel panneau_principal = new JPanel();
+		panneau_principal.setLayout(new BorderLayout()); 
+		Main.window.setContentPane(panneau_principal);
+
+		//ICON BOUTON
+//		Image disc = null;
+//		try {
+//			disc = ImageIO.read(new File("src/Images/Disc.png"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		//PROCESSUS
+		JPanel BoxAllProcessus = new JPanel();
+		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
+		
+//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
+//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
+//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
+//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
+		
+		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
+		//((JPanel)Main.window.getContentPane().getComponent(0)).add(new JLabel("Hello"));;
+		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
+		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
+
+	}
+	
+	public static void setListeProcessus(ArrayList<Processus> listep, JPanel pane) {
+		pane.removeAll();		
+		for(Processus p : listep) {
+			pane.add(new BoxProcessus(p));		
+		}
+		pane.revalidate();
+		//TIMER
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void update() {
-		Main.window.getContentPane();
-		ArrayList<String[]> res = Interaction.getApi();
-		
+		while(true) {
+			setListeProcessus(Interaction.getApi(),(JPanel) Main.window.getContentPane().getComponent(0));
+		}
 	}
-//https://www.jmdoudoux.fr/java/dej/chap-swing.htm
+
 }

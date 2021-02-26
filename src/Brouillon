@@ -1,0 +1,45 @@
+//IMAGEICON		
+//ImageIcon fingerIco = new ImageIcon("src/Images/u_put_the_finger_on_it.jpg");
+//Image finger = fingerIco.getImage().getScaledInstance( 100, 100,  java.awt.Image.SCALE_SMOOTH ) ;
+//ImageIcon fingerIcoUp = new ImageIcon(finger);
+
+//BOUTONS
+//		((JPanel) panneau_principal.getComponent(0)).setLayout(new FlowLayout(FlowLayout.RIGHT));
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("A"));
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("B")); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Processus("Test"));
+		
+//		Main.window.setContentPane(new Processus("Test", fingerIco)); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("C"), BorderLayout.CENTER); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("D"), BorderLayout.EAST); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("E"), BorderLayout.SOUTH); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("F"), BorderLayout.NORTH); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("G"), BorderLayout.NORTH); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("H"), BorderLayout.NORTH); 
+//		((JPanel) panneau_principal.getComponent(0)).add(new Button("I"), BorderLayout.NORTH); 
+	    
+//TEST
+//		JButton bouton = new JButton("Cliquez-moi",fingerIco);
+//		bouton.setPreferredSize(new Dimension(100, 100));
+//	    JButton b2 =new JButton("Mon bouton");
+//	    JButton b3 =new JButton("TEst");
+//	    ((JPanel) Main.window.getContentPane().getComponent(0)).add(bouton);
+//	    ((JPanel) Main.window.getContentPane()).add(b3);
+//	    ((JPanel) Main.window.getContentPane().getComponent(0)).add(b2);
+//	    b3.setBounds(800,800,800,800);
+
+//UPDATE
+//		System.out.println(Main.window.getContentPane());
+//		Component[] tab = Main.window.getContentPane().getComponents();
+//		for (int i = 0; i < tab.length; i++) {
+//			System.out.println(tab[i]);
+//		}
+//		Main.window.getContentPane().remove(Main.window.getContentPane().getComponent(2));
+//		JPanel panneau_infos = new JPanel();
+//		Main.window.getContentPane().add(panneau_infos, BorderLayout.CENTER, 2);
+//		ArrayList<String[]> res = Interaction.getApi();
+//		for (String[] tab: res) {
+//			panneau_infos.add(new JLabel(tab[0] + " : " + tab[1]));
+//		}
+//	}
+//https://www.jmdoudoux.fr/java/dej/chap-swing.htm
