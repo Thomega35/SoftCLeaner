@@ -28,6 +28,9 @@
 //	    ((JPanel) Main.window.getContentPane().getComponent(0)).add(b2);
 //	    b3.setBounds(800,800,800,800);
 
+//ACCESS FROM MAIN
+//((JPanel)Main.window.getContentPane().getComponent(0)).add(new JLabel("Hello"));;
+
 //UPDATE
 //		System.out.println(Main.window.getContentPane());
 //		Component[] tab = Main.window.getContentPane().getComponents();

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
 
@@ -14,7 +15,7 @@ public class BoxProcessus extends JPanel {
 		this.add(new JLabel(p.pic));
 		this.add(new Label(p.name));
 		this.add(new JButton(p.tache));
-		
+		this.setBackground(Color.LIGHT_GRAY);
 	}
 	
 }

@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -27,27 +28,12 @@ public class Display {
 		JPanel panneau_principal = new JPanel();
 		panneau_principal.setLayout(new BorderLayout()); 
 		Main.window.setContentPane(panneau_principal);
-
-		//ICON BOUTON
-//		Image disc = null;
-//		try {
-//			disc = ImageIO.read(new File("src/Images/Disc.png"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		
 		//PROCESSUS
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		
-//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
-//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
-//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
-//		BoxAllProcessus.add(new BoxProcessus("Test","", new ImageIcon(disc)));
-		
 		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
-		//((JPanel)Main.window.getContentPane().getComponent(0)).add(new JLabel("Hello"));;
 		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
 		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
 
