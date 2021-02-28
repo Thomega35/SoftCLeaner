@@ -23,7 +23,8 @@ public class Display {
 		Main.window.setSize(400,210);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
-		
+		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		//Creation Panels
 		JPanel panneau_principal = new JPanel();
 		panneau_principal.setLayout(new BorderLayout()); 
