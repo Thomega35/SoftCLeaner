@@ -2,7 +2,6 @@ import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -12,8 +11,12 @@ import javax.swing.ImageIcon;
 public class Interaction {
 	
 	public static ArrayList<Processus> getApi(){
-		ArrayList<Processus> l = new ArrayList<Processus>();
+//INITIALISATION
+		ArrayList<Processus> listRes = new ArrayList<Processus>();
+		String[] liste_process = new String[1000];
+		int nb_processus = 0;
 		
+//IMAGE DISCORD
 		Image disc = null;
 		try {
 			disc = ImageIO.read(new File("src/Images/Disc.png"));
@@ -21,39 +24,81 @@ public class Interaction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ImageIcon discIC = new ImageIcon(disc);
 		
-		Processus p1 = new Processus("Test","test.exe",new ImageIcon(disc));
-		Processus p2 = new Processus("Teams","teams.exe",new ImageIcon(disc));
-		Processus p3 = new Processus("Discord","discord.exe",new ImageIcon(disc));
-		l.add(p1);
-		l.add(p2);
-		l.add(p3);
-		String ligne = null; 
-		String[] process = new String[1000];
-		int i = 0;
+//COMMANDE GET-PROCESS STOCKE DANS process[]
 		try {
-			@SuppressWarnings("unused")
 			BufferedReader pros = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("powershell.exe get-process" ).getInputStream()));
-			while (( process[i] = pros.readLine()) != null) { 
-		         // ligne contient une ligne de sortie normale ou d'erreur
-				System.out.println(process[i]);
-				i++;
+			while (( liste_process[nb_processus] = pros.readLine()) != null) { 
+				nb_processus++;
 		    }
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[][] processSplit = new String[i][11];
-		for (int j = 0;j<i;j++) {
-			processSplit[j] = process[j].split(" ");
+		
+		//process[] split dans processSplit[][]
+		String[][] processSplit = new String[nb_processus][11];
+		for (int i = 0;i<nb_processus;i++) {
+			processSplit[i] = liste_process[i].split("\\s+");
 		}
-		for (int j = 0; j<i;j++) {
-			for (int J = 0; J< processSplit[j].length;J++) {
-				//System.out.print(processSplit[j][J] + " , ");
+		
+		//Creation des "Processus" rendu (pas de doubles)
+		String[][] nameID = new String[nb_processus-5][2];
+		for (int i = 3; i<nameID.length+3;i++) {
+			if (processSplit[i].length-3 >= 0) {
+				nameID[i-3][0] = processSplit[i][processSplit[i].length-1];
+				nameID[i-3][1] = processSplit[i][processSplit[i].length-3];
 			}
-			//System.out.println();
 		}
-		return l;
+		Map<String,List<String>> map = tabToMap(nameID);
+		for (Map.Entry<String, List<String>> process : map.entrySet()) {
+			listRes.add(new Processus(process.getKey(),(ArrayList<String>) (process.getValue()),discIC));
+		}
+		//Creation des "Processus" rendu (pas de doubles)
+//		String[] resultats = new String[nb_processus];
+//		int indexRes = 0;
+//		for (int i = 3; i<nb_processus;i++) {
+//			if (processSplit[i].length-3 >= 0 && estNouveau(resultats,processSplit[i][processSplit[i].length-1])) {
+//				listRes.add(new Processus(processSplit[i][processSplit[i].length-1], processSplit[i][processSplit[i].length-3], discIC));
+//				resultats[indexRes] = processSplit[i][processSplit[i].length-1];
+//				indexRes++;
+//			}
+//		}
+		
+		return listRes;
+		//DISPLAY
+//		for (int j = 0; j<i;j++) {
+//			for (int J = 5; J< processSplit[j].length;J++) {
+//				System.out.print(processSplit[j][J] + " , ");
+//			}
+//			System.out.print(processSplit[j].length);
+//			System.out.println();
+//		}
+		
 	}
 	
+	public static boolean estNouveau(String[] tabExistant, String nouveauMot) {
+		for (int index = 0; index<tabExistant.length;index++) {
+			if (nouveauMot.equals(tabExistant[index]))
+				return false;
+		}
+		return true;
+	}
+	
+	@SuppressWarnings("serial")
+	public static Map<String, List<String>> tabToMap(String[][] input) {
+		Map<String, List<String>> output = new HashMap<String, List<String>>();
+		for (String[] strings : input) {
+			String nom = strings[0];
+			String id = strings[1];
+			
+			if (!output.containsKey(nom))
+				
+				output.put(nom, new ArrayList<String>() {{this.add(id);}});
+			else
+				output.get(nom).add(id);
+		}
+		return output;
+	}
 }

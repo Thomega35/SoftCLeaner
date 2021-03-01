@@ -15,7 +15,7 @@ import javax.swing.*;
 
 @SuppressWarnings("unused")
 public class Display {
-	
+	static JPanel BoxAllProcessus = new JPanel();
 	public static void init() {
 		
 		//FRAME 
@@ -31,10 +31,13 @@ public class Display {
 		Main.window.setContentPane(panneau_principal);
 		
 		//PROCESSUS
-		JPanel BoxAllProcessus = new JPanel();
+		BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		
-		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
+		JScrollPane scroll = new JScrollPane(BoxAllProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0, 0, 930, 610);
+        
+		panneau_principal.add(scroll, BorderLayout.CENTER);
 		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
 		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
 
@@ -48,7 +51,7 @@ public class Display {
 		pane.revalidate();
 		//TIMER
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(25000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -56,7 +59,9 @@ public class Display {
 	
 	public static void update() {
 		while(true) {
-			setListeProcessus(Interaction.getApi(),(JPanel) Main.window.getContentPane().getComponent(0));
+			setListeProcessus(Interaction.getApi(),
+					//(JPanel) Main.window.getContentPane().getComponent(0)
+					BoxAllProcessus);
 		}
 	}
 

@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +13,9 @@ public class BoxProcessus extends JPanel {
 		this.setLayout(new FlowLayout());
 		this.add(new JLabel(p.pic));
 		this.add(new Label(p.name));
-		this.add(new JButton(p.tache));
+		JButton redButton = new JButton("CLOSE");
+		redButton.setBackground(new Color(171, 7, 42));
+		this.add(redButton);
 		this.setBackground(Color.LIGHT_GRAY);
 	}
 	

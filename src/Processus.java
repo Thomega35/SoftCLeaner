@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 public class Processus {
 
 	String name;
-	String tache;
+	ArrayList<String> ID;
 	ImageIcon pic;
 	
-	public Processus(String name, String tache, ImageIcon pic) {
+	public Processus(String name, ArrayList<String> ID, ImageIcon pic) {
 		this.name = name;
-		this.tache = tache;
+		this.ID = ID;
 		this.pic = pic;
 	}
 
