@@ -21,7 +21,6 @@ public class Interaction {
 		try {
 			disc = ImageIO.read(new File("src/Images/Disc.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ImageIcon discIC = new ImageIcon(disc);
@@ -55,27 +54,7 @@ public class Interaction {
 		for (Map.Entry<String, List<String>> process : map.entrySet()) {
 			listRes.add(new Processus(process.getKey(),(ArrayList<String>) (process.getValue()),discIC));
 		}
-		//Creation des "Processus" rendu (pas de doubles)
-//		String[] resultats = new String[nb_processus];
-//		int indexRes = 0;
-//		for (int i = 3; i<nb_processus;i++) {
-//			if (processSplit[i].length-3 >= 0 && estNouveau(resultats,processSplit[i][processSplit[i].length-1])) {
-//				listRes.add(new Processus(processSplit[i][processSplit[i].length-1], processSplit[i][processSplit[i].length-3], discIC));
-//				resultats[indexRes] = processSplit[i][processSplit[i].length-1];
-//				indexRes++;
-//			}
-//		}
-		
 		return listRes;
-		//DISPLAY
-//		for (int j = 0; j<i;j++) {
-//			for (int J = 5; J< processSplit[j].length;J++) {
-//				System.out.print(processSplit[j][J] + " , ");
-//			}
-//			System.out.print(processSplit[j].length);
-//			System.out.println();
-//		}
-		
 	}
 	
 	public static boolean estNouveau(String[] tabExistant, String nouveauMot) {

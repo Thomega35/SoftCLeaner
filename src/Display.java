@@ -15,11 +15,12 @@ import javax.swing.*;
 
 @SuppressWarnings("unused")
 public class Display {
-	static JPanel BoxAllProcessus = new JPanel();
+	static JPanel BoxMainProcessus = new JPanel();
+	static JPanel BoxOtherProcessus = new JPanel();
 	public static void init() {
 		
 		//FRAME 
-		Main.window = new JFrame("SoftCleaner V1.0");
+		Main.window = new JFrame("SoftCleaner V1.3");
 		Main.window.setSize(400,210);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
@@ -31,13 +32,16 @@ public class Display {
 		Main.window.setContentPane(panneau_principal);
 		
 		//PROCESSUS
-		BoxAllProcessus = new JPanel();
-		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
-		
-		JScrollPane scroll = new JScrollPane(BoxAllProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		BoxMainProcessus.setLayout(new BoxLayout(BoxMainProcessus, BoxLayout.Y_AXIS));		
+		JScrollPane scroll = new JScrollPane(BoxMainProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setBounds(0, 0, 930, 610);
         
+		BoxOtherProcessus.setLayout(new BoxLayout(BoxOtherProcessus, BoxLayout.Y_AXIS));
+        
+
+		//panneau_principal.add(scroll, BorderLayout.SOUTH);
 		panneau_principal.add(scroll, BorderLayout.CENTER);
+		//panneau_principal
 		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
 		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
 
@@ -46,11 +50,19 @@ public class Display {
 	public static void setListeProcessus(ArrayList<Processus> listep, JPanel pane) {
 		pane.removeAll();		
 		for(Processus p : listep) {
-			pane.add(new BoxProcessus(p));		
+			if (p.name.equals("chrome")) {
+				pane.add(new BoxProcessus(p));		
+			}
+		}
+		for(Processus p : listep) {
+			if (!p.name.equals("chrome")) {
+				pane.add(new BoxProcessus(p));		
+			}
 		}
 		pane.revalidate();
 		//TIMER
 		try {
+			//TODO changer l'update
 			Thread.sleep(25000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -61,7 +73,7 @@ public class Display {
 		while(true) {
 			setListeProcessus(Interaction.getApi(),
 					//(JPanel) Main.window.getContentPane().getComponent(0)
-					BoxAllProcessus);
+					Display.BoxMainProcessus);
 		}
 	}
 

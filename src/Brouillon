@@ -45,4 +45,24 @@
 //			panneau_infos.add(new JLabel(tab[0] + " : " + tab[1]));
 //		}
 //	}
+
+//INTERACTION
+		//Creation des "Processus" rendu (pas de doubles)
+//		String[] resultats = new String[nb_processus];
+//		int indexRes = 0;
+//		for (int i = 3; i<nb_processus;i++) {
+//			if (processSplit[i].length-3 >= 0 && estNouveau(resultats,processSplit[i][processSplit[i].length-1])) {
+//				listRes.add(new Processus(processSplit[i][processSplit[i].length-1], processSplit[i][processSplit[i].length-3], discIC));
+//				resultats[indexRes] = processSplit[i][processSplit[i].length-1];
+//				indexRes++;
+//			}
+//		}
+		//DISPLAY
+//		for (int j = 0; j<i;j++) {
+//			for (int J = 5; J< processSplit[j].length;J++) {
+//				System.out.print(processSplit[j][J] + " , ");
+//			}
+//			System.out.print(processSplit[j].length);
+//			System.out.println();
+//		}
 //https://www.jmdoudoux.fr/java/dej/chap-swing.htm

@@ -14,9 +14,10 @@ public class BoxProcessus extends JPanel {
 		this.add(new JLabel(p.pic));
 		this.add(new Label(p.name));
 		JButton redButton = new JButton("CLOSE");
+		KillImplementation action = new KillImplementation(p.ID);
+		redButton.addActionListener(action);
 		redButton.setBackground(new Color(171, 7, 42));
 		this.add(redButton);
 		this.setBackground(Color.LIGHT_GRAY);
 	}
-	
 }
