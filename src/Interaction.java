@@ -1,12 +1,14 @@
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -69,7 +71,6 @@ public class Interaction {
 		return true;
 	}
 
-	@SuppressWarnings("serial")
 	public static Map<String, List<String>> tabToMap(String[][] input) {
 		Map<String, List<String>> output = new HashMap<String, List<String>>();
 		for (String[] strings : input) {
@@ -77,14 +78,31 @@ public class Interaction {
 			String id = strings[1];
 
 			if (!output.containsKey(nom))
-				output.put(nom, new ArrayList<String>() {
-					{
+				output.put(nom, new ArrayList<String>() {/**
+					 * 
+					 */
+					private static final long serialVersionUID = 473430190386781733L;
+
+				{
 						this.add(id);
-					}
-				});
+					}});
 			else
 				output.get(nom).add(id);
 		}
 		return output;
+	}
+
+	public static List<String> extractMainProcess(String file) {
+		Scanner scanner = null;
+		List<String> res = new ArrayList<String>();
+		try {
+			scanner = new Scanner(new File(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		while(scanner.hasNext()){
+		     res.add(scanner.nextLine());
+		}
+		return res;
 	}
 }

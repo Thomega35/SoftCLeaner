@@ -1,3 +1,4 @@
+test
 //IMAGEICON		
 //ImageIcon fingerIco = new ImageIcon("src/Images/u_put_the_finger_on_it.jpg");
 //Image finger = fingerIco.getImage().getScaledInstance( 100, 100,  java.awt.Image.SCALE_SMOOTH ) ;
