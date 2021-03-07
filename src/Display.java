@@ -15,65 +15,81 @@ import javax.swing.*;
 
 @SuppressWarnings("unused")
 public class Display {
+
 	static JPanel BoxMainProcessus = new JPanel();
 	static JPanel BoxOtherProcessus = new JPanel();
+
 	public static void init() {
-		
-		//FRAME 
-		Main.window = new JFrame("SoftCleaner V1.3");
-		Main.window.setSize(400,210);
+
+		// FRAME
+		Main.window = new JFrame("SoftCleaner V1.4");
+		Main.window.setSize(600, 600);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//Creation Panels
+		// Creation composants principaux
 		JPanel panneau_principal = new JPanel();
-		panneau_principal.setLayout(new BorderLayout()); 
+		panneau_principal.setLayout(new BorderLayout());
 		Main.window.setContentPane(panneau_principal);
-		
-		//PROCESSUS
-		BoxMainProcessus.setLayout(new BoxLayout(BoxMainProcessus, BoxLayout.Y_AXIS));		
-		JScrollPane scroll = new JScrollPane(BoxMainProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0, 0, 930, 610);
-        
-		BoxOtherProcessus.setLayout(new BoxLayout(BoxOtherProcessus, BoxLayout.Y_AXIS));
-        
 
-		//panneau_principal.add(scroll, BorderLayout.SOUTH);
-		panneau_principal.add(scroll, BorderLayout.CENTER);
-		//panneau_principal
+		JPanel BoxAllProcessus = new JPanel();
+		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
+		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
+
+		// Box stockage Processus
+		BoxMainProcessus.setLayout(new BoxLayout(BoxMainProcessus, BoxLayout.Y_AXIS));
+		JScrollPane mainScroll = new JScrollPane(BoxMainProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		mainScroll.setBounds(0, 0, 930, 610);
+		mainScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
+
+		BoxOtherProcessus.setLayout(new BoxLayout(BoxOtherProcessus, BoxLayout.Y_AXIS));
+		JScrollPane otherScroll = new JScrollPane(BoxOtherProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		otherScroll.setBounds(0, 0, 930, 610);
+		otherScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
+
+		
+		//Remplissage composant principaux
+		BoxAllProcessus.add(mainScroll);
+		BoxAllProcessus.add(otherScroll);
 		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
 		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
+		panneau_principal.revalidate();
+		
+	}
 
-	}
-	
-	public static void setListeProcessus(ArrayList<Processus> listep, JPanel pane) {
-		pane.removeAll();		
-		for(Processus p : listep) {
+	public static void setListeProcessus(ArrayList<Processus> listep, JPanel mainp, JPanel otherp) {
+		mainp.removeAll();
+		otherp.removeAll();
+		for (Processus p : listep) {
+			BoxProcessus boxp = new BoxProcessus(p);
 			if (p.name.equals("chrome")) {
-				pane.add(new BoxProcessus(p));		
+				mainp.add(boxp);
+			}else {
+				otherp.add(boxp);
 			}
 		}
-		for(Processus p : listep) {
-			if (!p.name.equals("chrome")) {
-				pane.add(new BoxProcessus(p));		
-			}
-		}
-		pane.revalidate();
-		//TIMER
-		try {
-			//TODO changer l'update
-			Thread.sleep(25000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
+		mainp.revalidate();
+		otherp.revalidate();
+		
 	}
-	
+
 	public static void update() {
-		while(true) {
+		while (true) {
 			setListeProcessus(Interaction.getApi(),
-					//(JPanel) Main.window.getContentPane().getComponent(0)
-					Display.BoxMainProcessus);
+					// (JPanel) Main.window.getContentPane().getComponent(0)
+					Display.BoxMainProcessus, Display.BoxOtherProcessus);
+			
+			// TIMER
+			try {
+				// TODO changer l'update
+				Thread.sleep(25000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

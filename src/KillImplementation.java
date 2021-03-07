@@ -18,7 +18,7 @@ public class KillImplementation implements ActionListener{
 		}
 		Display.setListeProcessus(Interaction.getApi(),
 				//(JPanel) Main.window.getContentPane().getComponent(0)
-				Display.BoxMainProcessus);
+				Display.BoxMainProcessus, Display.BoxOtherProcessus);
 	}
 	
 	public KillImplementation (ArrayList<String> PID) {
