@@ -105,4 +105,9 @@ public class Interaction {
 		}
 		return res;
 	}
+	
+	//https://docs.microsoft.com/en-us/windows/win32/procthread/process-and-thread-functions#process-enumeration-functions
+	//Shell commande in java
+	//get-process2130
+	
 }
