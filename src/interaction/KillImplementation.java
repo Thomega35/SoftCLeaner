@@ -1,6 +1,8 @@
+package interaction;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import UI.Display;
 import java.awt.event.*;
 
 public class KillImplementation implements ActionListener{
@@ -16,13 +18,14 @@ public class KillImplementation implements ActionListener{
 		} catch (IOException exeption) {
 			exeption.printStackTrace();
 		}
-		Display.setListeProcessus(Interaction.getApi(),
+		Display.setListeProcessus(Interaction.getProcessus(),
 				//(JPanel) Main.window.getContentPane().getComponent(0)
-				Display.BoxMainProcessus, Display.BoxOtherProcessus);
+				Display.getBoxMainProcessus(), Display.getBoxOtherProcessus());
 	}
 	
-	public KillImplementation (ArrayList<String> PID) {
-		this.PID = PID;
+	public KillImplementation (java.util.List<String> list) {
+		
+		this.PID = new ArrayList<String>(list);
 	}
 
 }

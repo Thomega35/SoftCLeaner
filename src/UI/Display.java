@@ -1,3 +1,4 @@
+package UI;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -13,11 +14,14 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import interaction.*;
+import main.Main;
+
 @SuppressWarnings("unused")
 public class Display {
 
-	static JPanel BoxMainProcessus = new JPanel();
-	static JPanel BoxOtherProcessus = new JPanel();
+	private static JPanel BoxMainProcessus = new JPanel();
+	private static JPanel BoxOtherProcessus = new JPanel();
 
 	public static void init() {
 
@@ -38,14 +42,14 @@ public class Display {
 		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
 
 		// Box stockage Processus
-		BoxMainProcessus.setLayout(new BoxLayout(BoxMainProcessus, BoxLayout.Y_AXIS));
-		JScrollPane mainScroll = new JScrollPane(BoxMainProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		getBoxMainProcessus().setLayout(new BoxLayout(getBoxMainProcessus(), BoxLayout.Y_AXIS));
+		JScrollPane mainScroll = new JScrollPane(getBoxMainProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mainScroll.setBounds(0, 0, 930, 610);
 		mainScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
 
-		BoxOtherProcessus.setLayout(new BoxLayout(BoxOtherProcessus, BoxLayout.Y_AXIS));
-		JScrollPane otherScroll = new JScrollPane(BoxOtherProcessus, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		getBoxOtherProcessus().setLayout(new BoxLayout(getBoxOtherProcessus(), BoxLayout.Y_AXIS));
+		JScrollPane otherScroll = new JScrollPane(getBoxOtherProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		otherScroll.setBounds(0, 0, 930, 610);
 		otherScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
@@ -65,7 +69,7 @@ public class Display {
 		otherp.removeAll();
 		for (Processus p : listep) {
 			BoxProcessus boxp = new BoxProcessus(p);
-			if (p.name.equals("chrome")) {
+			if (p.getName().equals("chrome")) {
 				mainp.add(boxp);
 			}else {
 				otherp.add(boxp);
@@ -79,9 +83,9 @@ public class Display {
 
 	public static void update() {
 		while (true) {
-			setListeProcessus(Interaction.getApi(),
+			setListeProcessus(Interaction.getProcessus(),
 					// (JPanel) Main.window.getContentPane().getComponent(0)
-					Display.BoxMainProcessus, Display.BoxOtherProcessus);
+					Display.getBoxMainProcessus(), Display.getBoxOtherProcessus());
 			
 			// TIMER
 			try {
@@ -91,6 +95,22 @@ public class Display {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static JPanel getBoxMainProcessus() {
+		return BoxMainProcessus;
+	}
+
+	public static void setBoxMainProcessus(JPanel boxMainProcessus) {
+		BoxMainProcessus = boxMainProcessus;
+	}
+
+	public static JPanel getBoxOtherProcessus() {
+		return BoxOtherProcessus;
+	}
+
+	public static void setBoxOtherProcessus(JPanel boxOtherProcessus) {
+		BoxOtherProcessus = boxOtherProcessus;
 	}
 
 }
