@@ -10,10 +10,8 @@ import java.awt.Label;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import interaction.*;
 import main.Main;
 
@@ -60,8 +58,7 @@ public class Display {
 		BoxAllProcessus.add(otherScroll);
 		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
 		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
-		panneau_principal.revalidate();
-		
+		Main.window.revalidate();
 	}
 
 	public static void setListeProcessus(ArrayList<Processus> listep, JPanel mainp, JPanel otherp) {
@@ -69,7 +66,7 @@ public class Display {
 		otherp.removeAll();
 		for (Processus p : listep) {
 			BoxProcessus boxp = new BoxProcessus(p);
-			if (p.getName().equals("chrome")) {
+			if (p.getPath().length() > 0) {
 				mainp.add(boxp);
 			}else {
 				otherp.add(boxp);
@@ -86,7 +83,7 @@ public class Display {
 			setListeProcessus(Interaction.getProcessus(),
 					// (JPanel) Main.window.getContentPane().getComponent(0)
 					Display.getBoxMainProcessus(), Display.getBoxOtherProcessus());
-			
+			Main.window.revalidate();
 			// TIMER
 			try {
 				// TODO changer l'update

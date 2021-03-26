@@ -1,5 +1,11 @@
 package interaction;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.filechooser.FileSystemView;
 
 public class Processus {
 
@@ -7,12 +13,14 @@ public class Processus {
 	private java.util.List<String> ID;
 	private ImageIcon pic;
 	private String path;
+	static ImageIcon errorPic;
 	
-	public Processus(String name, java.util.List<String> PID, String path, ImageIcon pic) {
+	public Processus(String name, java.util.List<String> PID, String path) {
 		this.setName(name);
 		this.setID(PID);
 		this.setPic(pic);
 		this.setPath(path);
+		this.pic = iconByPath(path);
 	}
 	
 	public String toString() {
@@ -58,6 +66,24 @@ public class Processus {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	public static void loadAdminPic() {
+		Image errorPic = null;
+		try {
+			errorPic = ImageIO.read(new File("src/Images/Admin.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Processus.errorPic = new ImageIcon((errorPic.getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+	}
+	
+	public static ImageIcon iconByPath (String path) {
+		if (path.length() <= 0) {
+			return Processus.errorPic;
+		}
+		File file = new File(path);
+		return (ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file);
 	}
 
 }

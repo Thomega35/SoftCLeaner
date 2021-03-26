@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+import javax.swing.filechooser.FileSystemView;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class Interaction {
-	
-	static ImageIcon discIC;
 	
 	public static ArrayList<Processus> getProcessus() {
 //INITIALISATION
@@ -23,15 +21,6 @@ public class Interaction {
 		ArrayList<String[]> liste_vracProcessusSplit = new ArrayList<String[]>();
 		ArrayList<String[]> liste_Organisee_Processus = new ArrayList<String[]>();
 		ArrayList<Processus> liste_objetProcessus = new ArrayList<Processus>();//get-process
-
-//IMAGE DISCORD
-		Image disc = null;
-		try {
-			disc = ImageIO.read(new File("src/Images/Disc.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		discIC = new ImageIcon(disc);
 
 //REALISE LA COMMANED POWERSHELL ET RECUPERE LE RESULTAT DANS liste_vracProcessus
 		try {
@@ -63,7 +52,7 @@ public class Interaction {
 		ArrayList<String> name = new ArrayList<>();
 		for (String[] s : liste_Organisee_Processus) {
 			if (estNouveau(name, s[1])) {
-				liste_objetProcessus.add(new Processus(s[1], Arrays.asList(s[2]), s[0], iconByPid(s[0])));
+				liste_objetProcessus.add(new Processus(s[1], Arrays.asList(s[2]), s[0]));
 				name.add(s[1]);
 			}else {
 				for (Processus p : liste_objetProcessus) {
@@ -102,12 +91,6 @@ public class Interaction {
 		}
 		return res;
 	}
-	
-	public static ImageIcon iconByPid (String path) {
-		
-		return discIC;
-	}
-	
 	
 	//https://docs.microsoft.com/en-us/windows/win32/procthread/process-and-thread-functions#process-enumeration-functions
 	//Shell commande in java
