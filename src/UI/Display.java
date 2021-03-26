@@ -77,7 +77,7 @@ public class Display {
 		otherp.revalidate();
 		
 	}
-
+		
 	public static void update() {
 		while (true) {
 			setListeProcessus(Interaction.getProcessus(),
