@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import interaction.*;
 import main.Main;
 import type.Conseille;
@@ -46,7 +48,7 @@ public class Display {
 		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
 
 // Box stockage Processus
-		int n = 3;
+		int n = 1;
 		//BOXAINPROCESSUS
 		getBoxMainProcessus().setLayout(new BoxLayout(getBoxMainProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane mainScroll = new JScrollPane(getBoxMainProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -54,7 +56,8 @@ public class Display {
 		mainScroll.setBounds(0, 0, 930, 610);
 		mainScroll.setPreferredSize(new Dimension(Main.window.getSize().width/n,Main.window.getSize().width/n));
 		getBoxMainProcessus().setBackground(Color.decode("#000000")); 
-
+		mainScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
+		
 		//BOXOTHERPROCESSUS
 		getBoxOtherProcessus().setLayout(new BoxLayout(getBoxOtherProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane otherScroll = new JScrollPane(getBoxOtherProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -62,14 +65,16 @@ public class Display {
 		otherScroll.setBounds(0, 0, 930, 610);
 		otherScroll.setPreferredSize(new Dimension(Main.window.getSize().width/n,Main.window.getSize().width/n));
 		getBoxOtherProcessus().setBackground(Color.decode("#000000"));
+		otherScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
 		//BOWADVISEPROCESSUS
 		getBoxAdviseProcessus().setLayout(new BoxLayout(getBoxAdviseProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane AdviseScroll = new JScrollPane(getBoxAdviseProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		AdviseScroll.setBounds(0, 0, 930, 610);
-		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width/n,Main.window.getSize().width/n));
+		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width,Main.window.getSize().width));
 		getBoxAdviseProcessus().setBackground(Color.decode("#000000"));
+		AdviseScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
 		//TODO
 		Label todo1 = new Label("TODO");
@@ -81,10 +86,10 @@ public class Display {
 		
 		//Remplissage du composant principal
 		BoxAllProcessus.add(AdviseScroll);
-		BoxAllProcessus.add(mainScroll);
-		BoxAllProcessus.add(otherScroll);
-		panneau_principal.add(todo1, BorderLayout.EAST);
-		panneau_principal.add(todo2, BorderLayout.WEST);
+		//BoxAllProcessus.add(mainScroll);
+		//BoxAllProcessus.add(otherScroll);
+//		panneau_principal.add(todo1, BorderLayout.EAST);
+//		panneau_principal.add(todo2, BorderLayout.WEST);
 		Main.window.revalidate();
 	}
 

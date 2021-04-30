@@ -1,5 +1,4 @@
 package interaction;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.filechooser.FileSystemView;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class Interaction {
 	
