@@ -20,7 +20,7 @@ public class KillImplementation implements ActionListener{
 		}
 		Display.setListeProcessus(Interaction.getProcessus(),
 				//(JPanel) Main.window.getContentPane().getComponent(0)
-				Display.getBoxMainProcessus(), Display.getBoxOtherProcessus());
+				Display.getBoxMainProcessus(), Display.getBoxOtherProcessus(), Display.getBoxAdviseProcessus());
 	}
 	
 	public KillImplementation (java.util.List<String> list) {

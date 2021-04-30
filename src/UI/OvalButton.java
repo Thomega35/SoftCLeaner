@@ -59,7 +59,6 @@ public class OvalButton extends JButton {
 		setFocusable(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
- 
 	}
  
 	/**
