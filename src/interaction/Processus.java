@@ -7,6 +7,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
+import type.Systeme;
+import type.Type;
+
 public class Processus {
 
 	private String name;
@@ -14,13 +17,13 @@ public class Processus {
 	private ImageIcon pic;
 	private String path;
 	static ImageIcon errorPic;
+	private Type type;
 	
 	public Processus(String name, java.util.List<String> PID, String path) {
 		this.setName(name);
 		this.setID(PID);
-		this.setPic(pic);
 		this.setPath(path);
-		this.pic = iconByPath(path);
+		this.setIconAndTypeByPath();
 	}
 	
 	public String toString() {
@@ -67,6 +70,14 @@ public class Processus {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 	
 	public static void loadAdminPic() {
 		Image errorPic = null;
@@ -78,12 +89,13 @@ public class Processus {
 		Processus.errorPic = new ImageIcon((errorPic.getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
 	}
 	
-	public static ImageIcon iconByPath (String path) {
+	public void setIconAndTypeByPath () {
 		if (path.length() <= 0) {
-			return Processus.errorPic;
-		}
+			this.setPic(Processus.errorPic);
+			this.setType(new Systeme());
+		}else {
 		File file = new File(path);
-		return (ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file);
+		this.setPic((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file));
+		}
 	}
-
 }

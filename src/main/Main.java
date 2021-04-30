@@ -1,9 +1,7 @@
 package main;
 import java.util.ArrayList;
 import javax.swing.*;
-//
 import UI.Display;
-import interaction.*;
 //import com.sun.jna.Native;
 //import com.sun.jna.win32.W32APIOptions;
 //import com.sun.jna.platform.win32.User32;
@@ -29,6 +27,7 @@ import interaction.*;
 //import javax.swing.WindowConstants;
 //import java.io.*;
 //import javax.swing.*;
+import interaction.*;
 
 public class Main {
 	

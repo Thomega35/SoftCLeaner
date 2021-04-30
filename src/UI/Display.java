@@ -23,41 +23,54 @@ public class Display {
 
 	public static void init() {
 
-		// FRAME
+// FRAME
 		Main.window = new JFrame("SoftCleaner V1.4");
 		Main.window.setSize(600, 600);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// Creation composants principaux
+// Creation composants principaux
 		JPanel panneau_principal = new JPanel();
 		panneau_principal.setLayout(new BorderLayout());
 		Main.window.setContentPane(panneau_principal);
+		panneau_principal.setBackground(Color.decode("#52057b"));
 
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
+		BoxAllProcessus.setBackground(Color.decode("#000000")); //USELESS 
 		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
 
-		// Box stockage Processus
+// Box stockage Processus
+		//BOXAINPROCESSUS
 		getBoxMainProcessus().setLayout(new BoxLayout(getBoxMainProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane mainScroll = new JScrollPane(getBoxMainProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mainScroll.setBounds(0, 0, 930, 610);
 		mainScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
+		getBoxMainProcessus().setBackground(Color.decode("#000000")); 
 
+		//BOXOTHERPROCESSUS
 		getBoxOtherProcessus().setLayout(new BoxLayout(getBoxOtherProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane otherScroll = new JScrollPane(getBoxOtherProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		otherScroll.setBounds(0, 0, 930, 610);
 		otherScroll.setPreferredSize(new Dimension(Main.window.getSize().width/2,Main.window.getSize().width/2));
-
+		getBoxOtherProcessus().setBackground(Color.decode("#000000"));
 		
-		//Remplissage composant principaux
+		//TODO
+		Label todo1 = new Label("TODO");
+		todo1.setForeground(Color.decode("#000000"));
+		
+		//TODO
+		Label todo2 = new Label("TODO");
+		todo2.setForeground(Color.decode("#000000"));
+		
+		//Remplissage du composant principal
 		BoxAllProcessus.add(mainScroll);
 		BoxAllProcessus.add(otherScroll);
-		panneau_principal.add(new Label("TODO"), BorderLayout.EAST);
-		panneau_principal.add(new Label("TODO"), BorderLayout.WEST);
+		panneau_principal.add(todo1, BorderLayout.EAST);
+		panneau_principal.add(todo2, BorderLayout.WEST);
 		Main.window.revalidate();
 	}
 
@@ -77,7 +90,7 @@ public class Display {
 		otherp.revalidate();
 		
 	}
-		
+	
 	public static void update() {
 		while (true) {
 			setListeProcessus(Interaction.getProcessus(),

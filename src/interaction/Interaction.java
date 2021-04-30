@@ -1,5 +1,6 @@
 package interaction;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -90,6 +91,28 @@ public class Interaction {
 		     res.add(scanner.nextLine());
 		}
 		return res;
+	}
+	
+	public static boolean compareImages(BufferedImage imgA, BufferedImage imgB) {
+	    // Les deux images doivent avoir la même tailles
+	    if (imgA.getWidth() == imgB.getWidth() && imgA.getHeight() == imgB.getHeight()) {
+	        int width = imgA.getWidth();
+	        int height = imgA.getHeight();
+	 
+	        // Boucle sur chaque pixel de l'image
+	        for (int y = 0; y < height; y++) {
+	            for (int x = 0; x < width; x++) {
+	                // comparaison des deux pixels
+	                if (imgA.getRGB(x, y) != imgB.getRGB(x, y)) {
+	                    return false;
+	                }
+	            }
+	        }
+	    } else {
+	        return false;
+	    }
+	 
+	    return true;
 	}
 	
 	//https://docs.microsoft.com/en-us/windows/win32/procthread/process-and-thread-functions#process-enumeration-functions
