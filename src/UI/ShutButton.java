@@ -27,7 +27,7 @@ public class ShutButton extends JButton {
 		setForeground(Color.WHITE);
 		setBackground(Color.decode("#892CDC"));
 		setFocusable(false);
-		setPreferredSize(new Dimension(21, 21));
+		setPreferredSize(new Dimension(25, 25));
 		setFocusPainted(true); // On n'affiche pas l'effet de focus.
 //		try {
 //			BufferedImage sdp = ImageIO.read(new File("src/Images/Shut_down_pressed.png"));
@@ -46,21 +46,21 @@ public class ShutButton extends JButton {
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {
-			BufferedImage sd = ImageIO.read(new File("src/Images/Shut_down.png"));
-			BufferedImage sdp = ImageIO.read(new File("src/Images/Shut_down_pressed.png"));
-			BufferedImage sdr = ImageIO.read(new File("src/Images/Shut_down_rollover.png"));
-			sd = resizeImage(sd, 20, 20);
-			sdp = resizeImage(sdp, 20, 20);
-			sdr = resizeImage(sdr, 20, 20);
+			BufferedImage sdr = ImageIO.read(new File("src/Images/Shut_down.png"));
+			BufferedImage sd = ImageIO.read(new File("src/Images/Shut_down_pressed.png"));
+			BufferedImage sdp = ImageIO.read(new File("src/Images/Shut_down_rollover.png"));
+			sd = resizeImage(sd, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());
+			sdp = resizeImage(sdp, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());
+			sdr = resizeImage(sdr, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());
 			ButtonModel model = getModel();
 			if (!model.isPressed()) {
 				if (!model.isRollover()) {
-					g.drawImage(sd, 1, 1, null);
+					g.drawImage(sd, 0, 0, null);
 				}else {
-					g.drawImage(sdr, 1, 1, null);
+					g.drawImage(sdr, 0, 0, null);
 				}
 			}else {
-				g.drawImage(sdp, 1, 1, null);
+				g.drawImage(sdp, 0, 0, null);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

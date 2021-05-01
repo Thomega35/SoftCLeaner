@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import interaction.*;
 import main.Main;
 import type.Conseille;
@@ -23,10 +22,15 @@ import type.Systeme;
 @SuppressWarnings("unused")
 public class Display {
 
-	private static JPanel BoxMainProcessus = new JPanel();
-	private static JPanel BoxOtherProcessus = new JPanel();
-	private static JPanel BoxAdviseProcessus = new JPanel();
+	private static JPanel boxMainProcessus = new JPanel();
+	private static JPanel boxOtherProcessus = new JPanel();
+	private static JPanel boxAdviseProcessus = new JPanel();
 
+	private static JPanel PageAccueil = new JPanel();
+	private static JPanel PagePrincipal = new JPanel();
+	private static JPanel PageUtilisateur = new JPanel();
+	private static JPanel PageParametre = new JPanel();
+	
 	public static void init() {
 
 // FRAME
@@ -35,20 +39,130 @@ public class Display {
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {
+			Main.window.setIconImage(ImageIO.read(new File("src/Images/Recycling_symbol.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Main.window.setContentPane(PagePrincipal);
 
-// Creation composants principaux
-		JPanel panneau_principal = new JPanel();
-		panneau_principal.setLayout(new BorderLayout());
-		Main.window.setContentPane(panneau_principal);
-		panneau_principal.setBackground(Color.decode("#52057b"));
+// Creation PagePrincipal
+		PagePrincipal.setLayout(new BorderLayout());
+		PagePrincipal.setBackground(Color.decode("#52057b"));
+		
+		JPanel headingPrincipal = new JPanel();
+		headingPrincipal.setLayout(new BorderLayout());
+		headingPrincipal.setBackground(Color.black);
+		
+		JPanel raccourcis = new JPanel();
+		raccourcis.setLayout(new BoxLayout(raccourcis, BoxLayout.X_AXIS));
+		raccourcis.setBorder(new EmptyBorder(0, 0, 0, 0));
+		raccourcis.setOpaque(false);
+		
+		JButton parametre = new JButton();
+		parametre.setBorder(new EmptyBorder(0, 0, 0, 0));
+		parametre.setOpaque(false);
+		parametre.setPreferredSize(new Dimension(30,30));
+		parametre.setBackground(Color.black);
+		parametre.setFocusable(false);
+		parametre.addActionListener(new switchWindow(PageParametre));
+		JPanel spacer = new JPanel();
+		spacer.setPreferredSize(new Dimension(5,30));
+		spacer.setOpaque(false);
+		JButton utilisateur = new JButton();
+		utilisateur.setOpaque(false);
+		utilisateur.setBorder(new EmptyBorder(0, 0, 0, 0));
+		utilisateur.setPreferredSize(new Dimension(30,30));
+		utilisateur.setBackground(Color.black);
+		utilisateur.setFocusable(false);
+		utilisateur.addActionListener(new switchWindow(PageUtilisateur));
+		try {
+			parametre.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Engrenage.png")).getScaledInstance((int) parametre.getPreferredSize().getWidth(), (int) parametre.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
+			utilisateur.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/User.png")).getScaledInstance((int) utilisateur.getPreferredSize().getWidth(), (int) utilisateur.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		JLabel nbProcNow = new JLabel("Vous avez actuellement " + 8 + " processus en route :");
+		nbProcNow.setForeground(Color.decode("#bc8be8"));
+		
+//Creation PageParametre
+		PageParametre.setLayout(new BorderLayout());
+		PageParametre.setBackground(Color.decode("#000000"));
+		
+		JPanel headingPara = new JPanel();
+		headingPara.setLayout(new BorderLayout());
+		headingPara.setBackground(Color.black);
+		headingPara.setPreferredSize(new Dimension(30,30));
+		
+		JPanel midPara = new JPanel();
+		midPara.setLayout(new BorderLayout());
+		midPara.setBackground(Color.black);
+		midPara.setPreferredSize(new Dimension(30,30));
+		
+		JButton retour = new JButton();
+		retour.setBorder(new EmptyBorder(0, 0, 0, 0));
+		retour.setOpaque(false);
+		retour.setPreferredSize(new Dimension(30,30));
+		retour.setBackground(Color.black);
+		retour.setFocusable(false);
+		retour.addActionListener(new switchWindow(PagePrincipal));
+		try {
+			retour.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Arrow.png")).getScaledInstance((int) retour.getPreferredSize().getWidth(), (int) retour.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		JLabel head = new JLabel("Autres processus principaux : ");
+		head.setForeground(Color.decode("#bc8be8"));
+		
+		JLabel mid = new JLabel("Processus systems : ");
+		mid.setForeground(Color.decode("#bc8be8"));
+		
+		JPanel spacer2 = new JPanel();
+		spacer2.setPreferredSize(new Dimension(30,30));
+		spacer2.setOpaque(false);
+		
+		headingPara.add(retour, BorderLayout.WEST);
+		headingPara.add(head, BorderLayout.CENTER);
 
+		midPara.add(mid, BorderLayout.CENTER);
+		midPara.add(spacer2, BorderLayout.WEST);
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		BoxAllProcessus.setBackground(Color.decode("#000000")); //USELESS 
-		panneau_principal.add(BoxAllProcessus, BorderLayout.CENTER);
 
+//Creation PageUtilisateur
+		PageUtilisateur.setLayout(new BorderLayout());
+		PageUtilisateur.setBackground(Color.decode("#000000"));
+		
+		JPanel headingUtili = new JPanel();
+		headingUtili.setLayout(new BorderLayout());
+		headingUtili.setBackground(Color.black);
+		headingUtili.setPreferredSize(new Dimension(30,30));
+		
+		JButton retour2 = new JButton();
+		retour2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		retour2.setOpaque(false);
+		retour2.setPreferredSize(new Dimension(30,30));
+		retour2.setBackground(Color.black);
+		retour2.setFocusable(false);
+		retour2.addActionListener(new switchWindow(PagePrincipal));
+		try {
+			retour2.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Arrow.png")).getScaledInstance((int) retour2.getPreferredSize().getWidth(), (int) retour2.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		JLabel paraTitle = new JLabel("Information Utilisateur :");
+		paraTitle.setForeground(Color.decode("#bc8be8"));
+		
+		headingUtili.add(retour2, BorderLayout.WEST);
+		headingUtili.add(paraTitle, BorderLayout.CENTER);
+		PageUtilisateur.add(headingUtili, BorderLayout.NORTH);
+		
 // Box stockage Processus
-		int n = 1;
+		int n = 2;
 		//BOXAINPROCESSUS
 		getBoxMainProcessus().setLayout(new BoxLayout(getBoxMainProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane mainScroll = new JScrollPane(getBoxMainProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -76,20 +190,23 @@ public class Display {
 		getBoxAdviseProcessus().setBackground(Color.decode("#000000"));
 		AdviseScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
-		//TODO
-		Label todo1 = new Label("TODO");
-		todo1.setForeground(Color.decode("#000000"));
+		//Remplissage des 4composants principaux
+		//BoxAllProcessus.add(AdviseScroll);
+			//Parametre
+		BoxAllProcessus.add(headingPara);
+		BoxAllProcessus.add(mainScroll);
+		BoxAllProcessus.add(midPara);
+		BoxAllProcessus.add(otherScroll);
+		PageParametre.add(BoxAllProcessus);
+			//principal
+		headingPrincipal.add(raccourcis, BorderLayout.EAST);
+		headingPrincipal.add(nbProcNow, BorderLayout.WEST);
+		raccourcis.add(parametre);
+		raccourcis.add(spacer);
+		raccourcis.add(utilisateur);
+		PagePrincipal.add(headingPrincipal, BorderLayout.NORTH);
+		PagePrincipal.add(AdviseScroll, BorderLayout.CENTER);
 		
-		//TODO
-		Label todo2 = new Label("TODO");
-		todo2.setForeground(Color.decode("#000000"));
-		
-		//Remplissage du composant principal
-		BoxAllProcessus.add(AdviseScroll);
-		//BoxAllProcessus.add(mainScroll);
-		//BoxAllProcessus.add(otherScroll);
-//		panneau_principal.add(todo1, BorderLayout.EAST);
-//		panneau_principal.add(todo2, BorderLayout.WEST);
 		Main.window.revalidate();
 	}
 
@@ -137,21 +254,21 @@ public class Display {
 	}
 
 	public static JPanel getBoxMainProcessus() {
-		return BoxMainProcessus;
+		return boxMainProcessus;
 	}
-	public static void setBoxMainProcessus(JPanel boxMainProcessus) {
-		BoxMainProcessus = boxMainProcessus;
+	public static void setBoxMainProcessus(JPanel boxMainProcessu) {
+		boxMainProcessus = boxMainProcessu;
 	}
 	public static JPanel getBoxOtherProcessus() {
-		return BoxOtherProcessus;
+		return boxOtherProcessus;
 	}
-	public static void setBoxOtherProcessus(JPanel boxOtherProcessus) {
-		BoxOtherProcessus = boxOtherProcessus;
+	public static void setBoxOtherProcessus(JPanel boxOtherProcessu) {
+		boxOtherProcessus = boxOtherProcessu;
 	}
 	public static JPanel getBoxAdviseProcessus() {
-		return BoxAdviseProcessus;
+		return boxAdviseProcessus;
 	}
-	public static void setBoxAdviseProcessus(JPanel boxAdviseProcessus) {
-		BoxAdviseProcessus = boxAdviseProcessus;
+	public static void setBoxAdviseProcessus(JPanel boxAdviseProcessu) {
+		boxAdviseProcessus = boxAdviseProcessu;
 	}
 }
