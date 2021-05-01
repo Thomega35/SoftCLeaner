@@ -15,9 +15,7 @@ import javax.swing.JButton;
 public class ShutButton extends JButton {
 	 
 	private static final long serialVersionUID = -5168808778729080775L;
-	/**
-         * Constructor takes String argument
-         */
+	
 	public ShutButton() {
 		super();
 		setOpaque(false);
@@ -67,7 +65,7 @@ public class ShutButton extends JButton {
 		}
 	}
 	
-	BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
+	public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
 	    BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
 	    Graphics2D graphics2D = resizedImage.createGraphics();
 	    graphics2D.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);

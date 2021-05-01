@@ -1,4 +1,4 @@
-package interaction;
+package UI;
 import main.Main;
 import java.awt.Container;
 import java.awt.event.*;

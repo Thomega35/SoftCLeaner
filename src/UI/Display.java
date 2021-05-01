@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
 import java.io.File;
@@ -36,7 +37,8 @@ public class Display {
 
 // FRAME
 		Main.window = new JFrame("SoftCleaner V1.5");
-		Main.window.setSize(600, 600);
+		Main.window.setSize(950, 700);
+		Main.window.setMinimumSize(new Dimension(870,550));
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +47,7 @@ public class Display {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Main.window.setContentPane(PagePrincipal);
+		Main.window.setContentPane(PageAccueil);
 
 // Creation PagePrincipal
 		PagePrincipal.setLayout(new BorderLayout());
@@ -67,6 +69,7 @@ public class Display {
 		parametre.setBackground(Color.black);
 		parametre.setFocusable(false);
 		parametre.addActionListener(new switchWindow(PageParametre));
+		
 		JButton utilisateur = new JButton();
 		utilisateur.setOpaque(false);
 		utilisateur.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -74,14 +77,33 @@ public class Display {
 		utilisateur.setBackground(Color.black);
 		utilisateur.setFocusable(false);
 		utilisateur.addActionListener(new switchWindow(PageUtilisateur));
+		
+		JButton refresh = new JButton();
+		refresh.setOpaque(false);
+		refresh.setBorder(new EmptyBorder(0, 0, 0, 0));
+		refresh.setPreferredSize(new Dimension(30,30));
+		refresh.setBackground(Color.black);
+		refresh.setFocusable(false);
+		refresh.addActionListener(new RefreshAction());
+		
+		JButton help = new JButton();
+		help.setOpaque(false);
+		help.setBorder(new EmptyBorder(0, 0, 0, 0));
+		help.setPreferredSize(new Dimension(30,30));
+		help.setBackground(Color.black);
+		help.setFocusable(false);
+		help.addActionListener(new switchWindow(PageAccueil));
+		
 		try {
+			help.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Help.png")).getScaledInstance((int) help.getPreferredSize().getWidth(), (int) help.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
+			refresh.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Refresh.png")).getScaledInstance((int) refresh.getPreferredSize().getWidth(), (int) refresh.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
 			parametre.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/Engrenage.png")).getScaledInstance((int) parametre.getPreferredSize().getWidth(), (int) parametre.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
 			utilisateur.setIcon(new ImageIcon(ImageIO.read(new File("src/Images/User.png")).getScaledInstance((int) utilisateur.getPreferredSize().getWidth(), (int) utilisateur.getPreferredSize().getHeight(), Image.SCALE_DEFAULT)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		JLabel nbProcNow = new JLabel("Vous avez actuellement " + 8 + " processus en route :");
+		JLabel nbProcNow = new JLabel("Vous avez actuellement " + Interaction.getProcessus().size() + " processus en route :");
 		nbProcNow.setForeground(Color.decode("#bc8be8"));
 		
 //Creation PageParametre
@@ -111,7 +133,7 @@ public class Display {
 			e.printStackTrace();
 		}
 		
-		JLabel head = new JLabel("Autres processus principaux : ");
+		JLabel head = new JLabel("Autres processus principaux : (UTILISATEURS EXPERIMENTÉS)");
 		head.setForeground(Color.decode("#bc8be8"));
 		
 		JLabel mid = new JLabel("Processus systems : ");
@@ -147,41 +169,56 @@ public class Display {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Font para = new java.awt.Font("Calibri", 0, 25);
 		
-		JLabel paraTitle = new JLabel("Information Utilisateur :                                       ");
+		JLabel paraTitle = new JLabel("Information Utilisateur :                                                                                                                     ");
 		paraTitle.setForeground(Color.decode("#bc8be8"));
 		
 		JPanel infoUtili = new JPanel();
 		infoUtili.setLayout(new BoxLayout(infoUtili, BoxLayout.Y_AXIS));
 		infoUtili.setOpaque(false);
 		
-		JLabel info1 = new JLabel("info1 :");
+		JLabel info1 = new JLabel("Nombre de processus arrêtés grâce à l'application : 35");
 		info1.setForeground(Color.decode("#bc8be8"));
 		info1.setPreferredSize(new Dimension(50,50));
+		info1.setFont(para);
+		info1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info2 = new JLabel("info2 :");
+		JLabel info2 = new JLabel("Nombre de lancement de l'application : 4");
 		info2.setForeground(Color.decode("#bc8be8"));
 		info2.setPreferredSize(new Dimension(50,50));
+		info2.setFont(para);
+		info2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info3 = new JLabel("info3 :");
+		JLabel info3 = new JLabel("Theme de couleur utilisé : Deep Purple");
 		info3.setForeground(Color.decode("#bc8be8"));
 		info3.setPreferredSize(new Dimension(50,50));
+		info3.setFont(para);
+		info3.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info4 = new JLabel("info4 :");
+		JLabel info4 = new JLabel("Mode plein écran : OFF");
 		info4.setForeground(Color.decode("#bc8be8"));
 		info4.setPreferredSize(new Dimension(20,50));
+		info4.setFont(para);
+		info4.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info5 = new JLabel("info5 :");
+		JLabel info5 = new JLabel("Taille des fifférents composants : 12");
 		info5.setForeground(Color.decode("#bc8be8"));
 		info5.setPreferredSize(new Dimension(20,50));
-	
-		JLabel info6 = new JLabel("info6 :");
+		info5.setFont(para);
+		info5.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel info6 = new JLabel("Langue Utilisé : Français");
 		info6.setForeground(Color.decode("#bc8be8"));
 		info6.setPreferredSize(new Dimension(20,50));
+		info6.setFont(para);
+		info6.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info7 = new JLabel("info7 :");
+		JLabel info7 = new JLabel("Version Beta : NON");
 		info7.setForeground(Color.decode("#bc8be8"));
 		info7.setPreferredSize(new Dimension(20,50));
+		info7.setFont(para);
+		info7.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		infoUtili.add(info1);
 		infoUtili.add(voidSpacer(new Dimension(20,10)));
@@ -201,6 +238,15 @@ public class Display {
 		headingUtili.add(paraTitle, BorderLayout.CENTER);
 		PageUtilisateur.add(headingUtili, BorderLayout.NORTH);
 		PageUtilisateur.add(infoUtili, BorderLayout.CENTER);
+
+//Creation PageAccueil
+		PageAccueil.setLayout(new BorderLayout());
+		PageAccueil.setBackground(Color.decode("#000000"));
+		
+		AccueilBoutton accueilBoutton = new AccueilBoutton();
+		accueilBoutton.addActionListener(new switchWindow(PagePrincipal));
+		
+		PageAccueil.add(accueilBoutton);
 		
 // Box stockage Processus
 		int n = 2;
@@ -242,6 +288,10 @@ public class Display {
 			//principal
 		headingPrincipal.add(raccourcis, BorderLayout.EAST);
 		headingPrincipal.add(nbProcNow, BorderLayout.WEST);
+		raccourcis.add(help);
+		raccourcis.add(voidSpacer(new Dimension(5,30)));
+		raccourcis.add(refresh);
+		raccourcis.add(voidSpacer(new Dimension(5,30)));
 		raccourcis.add(parametre);
 		raccourcis.add(voidSpacer(new Dimension(5,30)));
 		raccourcis.add(utilisateur);
@@ -274,24 +324,18 @@ public class Display {
 	}
 	
 	public static void update() {
-		while (true) {
-			for(Processus p :Interaction.getProcessus()) {
-				System.out.println(p);
-			}
-			
-			setListeProcessus(Interaction.getProcessus(),
-					// (JPanel) Main.window.getContentPane().getComponent(0)
-					getBoxMainProcessus(), getBoxOtherProcessus(), getBoxAdviseProcessus());
-			Main.window.revalidate();
-			
-			// TIMER
-			try {
-				// TODO changer l'update
-				Thread.sleep(25000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		setListeProcessus(Interaction.getProcessus(),
+				// (JPanel) Main.window.getContentPane().getComponent(0)
+				getBoxMainProcessus(), getBoxOtherProcessus(), getBoxAdviseProcessus());
+		Main.window.revalidate();
+		
+		// TIMER
+//		try {
+//			// TODO changer l'update
+//			Thread.sleep(25000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static JPanel getBoxMainProcessus() {

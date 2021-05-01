@@ -105,6 +105,7 @@ public class Processus {
 				this.setType(new Secondaire());
 			}else {
 				this.setType(new Conseille());
+				System.out.println(name);
 			}
 		}
 	}
