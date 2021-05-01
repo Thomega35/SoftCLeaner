@@ -44,6 +44,7 @@ public class BoxProcessus extends JPanel {
 		boxP.setBackground(Color.decode(couleurFondBoxP));//3c415c
 		boxP.add(blocPic, BorderLayout.WEST);
 		boxP.add(blocName, BorderLayout.CENTER);
+		redButton.setPreferredSize(new Dimension((int) boxP.getPreferredSize().getHeight(), (int) boxP.getPreferredSize().getHeight()));
 		boxP.add(redButton, BorderLayout.EAST);
 	}
 }

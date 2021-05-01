@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.sound.midi.VoiceStatus;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import interaction.*;
@@ -34,7 +35,7 @@ public class Display {
 	public static void init() {
 
 // FRAME
-		Main.window = new JFrame("SoftCleaner V1.4");
+		Main.window = new JFrame("SoftCleaner V1.5");
 		Main.window.setSize(600, 600);
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
@@ -66,9 +67,6 @@ public class Display {
 		parametre.setBackground(Color.black);
 		parametre.setFocusable(false);
 		parametre.addActionListener(new switchWindow(PageParametre));
-		JPanel spacer = new JPanel();
-		spacer.setPreferredSize(new Dimension(5,30));
-		spacer.setOpaque(false);
 		JButton utilisateur = new JButton();
 		utilisateur.setOpaque(false);
 		utilisateur.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -119,15 +117,11 @@ public class Display {
 		JLabel mid = new JLabel("Processus systems : ");
 		mid.setForeground(Color.decode("#bc8be8"));
 		
-		JPanel spacer2 = new JPanel();
-		spacer2.setPreferredSize(new Dimension(30,30));
-		spacer2.setOpaque(false);
-		
 		headingPara.add(retour, BorderLayout.WEST);
 		headingPara.add(head, BorderLayout.CENTER);
 
 		midPara.add(mid, BorderLayout.CENTER);
-		midPara.add(spacer2, BorderLayout.WEST);
+		midPara.add(voidSpacer(new Dimension(30,30)), BorderLayout.WEST);
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		BoxAllProcessus.setBackground(Color.decode("#000000")); //USELESS 
@@ -154,12 +148,59 @@ public class Display {
 			e.printStackTrace();
 		}
 		
-		JLabel paraTitle = new JLabel("Information Utilisateur :");
+		JLabel paraTitle = new JLabel("Information Utilisateur :                                       ");
 		paraTitle.setForeground(Color.decode("#bc8be8"));
+		
+		JPanel infoUtili = new JPanel();
+		infoUtili.setLayout(new BoxLayout(infoUtili, BoxLayout.Y_AXIS));
+		infoUtili.setOpaque(false);
+		
+		JLabel info1 = new JLabel("info1 :");
+		info1.setForeground(Color.decode("#bc8be8"));
+		info1.setPreferredSize(new Dimension(50,50));
+		
+		JLabel info2 = new JLabel("info2 :");
+		info2.setForeground(Color.decode("#bc8be8"));
+		info2.setPreferredSize(new Dimension(50,50));
+		
+		JLabel info3 = new JLabel("info3 :");
+		info3.setForeground(Color.decode("#bc8be8"));
+		info3.setPreferredSize(new Dimension(50,50));
+		
+		JLabel info4 = new JLabel("info4 :");
+		info4.setForeground(Color.decode("#bc8be8"));
+		info4.setPreferredSize(new Dimension(20,50));
+		
+		JLabel info5 = new JLabel("info5 :");
+		info5.setForeground(Color.decode("#bc8be8"));
+		info5.setPreferredSize(new Dimension(20,50));
+	
+		JLabel info6 = new JLabel("info6 :");
+		info6.setForeground(Color.decode("#bc8be8"));
+		info6.setPreferredSize(new Dimension(20,50));
+		
+		JLabel info7 = new JLabel("info7 :");
+		info7.setForeground(Color.decode("#bc8be8"));
+		info7.setPreferredSize(new Dimension(20,50));
+		
+		infoUtili.add(info1);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info2);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info3);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info4);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info5);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info6);
+		infoUtili.add(voidSpacer(new Dimension(20,10)));
+		infoUtili.add(info7);
 		
 		headingUtili.add(retour2, BorderLayout.WEST);
 		headingUtili.add(paraTitle, BorderLayout.CENTER);
 		PageUtilisateur.add(headingUtili, BorderLayout.NORTH);
+		PageUtilisateur.add(infoUtili, BorderLayout.CENTER);
 		
 // Box stockage Processus
 		int n = 2;
@@ -202,7 +243,7 @@ public class Display {
 		headingPrincipal.add(raccourcis, BorderLayout.EAST);
 		headingPrincipal.add(nbProcNow, BorderLayout.WEST);
 		raccourcis.add(parametre);
-		raccourcis.add(spacer);
+		raccourcis.add(voidSpacer(new Dimension(5,30)));
 		raccourcis.add(utilisateur);
 		PagePrincipal.add(headingPrincipal, BorderLayout.NORTH);
 		PagePrincipal.add(AdviseScroll, BorderLayout.CENTER);
@@ -270,5 +311,12 @@ public class Display {
 	}
 	public static void setBoxAdviseProcessus(JPanel boxAdviseProcessu) {
 		boxAdviseProcessus = boxAdviseProcessu;
+	}
+	
+	public static JPanel voidSpacer(Dimension d) {
+		JPanel result = new JPanel();
+		result.setPreferredSize(d);
+		result.setOpaque(false);
+		return result;
 	}
 }
