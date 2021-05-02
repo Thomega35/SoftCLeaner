@@ -1,3 +1,13 @@
-chrome
-steam
-EpicGame
+Razer Synapse Service Process.exe
+Wacom_TabletUser.exe
+lghub.exe
+lghub_agent.exe
+EpicGamesLauncher.exe
+Razer Synapse 3.exe
+Razer Central.exe
+eclipse.exe
+Discord.exe
+Spotify.exe
+chrome.exe
+steam.exe
+steamwebhelper.exe

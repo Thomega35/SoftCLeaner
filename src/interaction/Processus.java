@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
+import main.Main;
 import type.Secondaire;
 import type.Systeme;
 import type.Conseille;
@@ -93,6 +94,12 @@ public class Processus {
 	
 	public void setIconAndTypeByPath () throws IOException {
 		//SI PAS DE PATH IMAGE ADMIN
+		Boolean isValidate = false;
+		for (String s : Main.mainProcess) {
+			if (s.equals(name)) {
+				isValidate = true;
+			}
+		}
 		if (path.length() <= 0) {
 			this.setPic(Processus.errorPic);
 			this.setType(new Systeme());
@@ -101,12 +108,15 @@ public class Processus {
 			File file = new File(path);
 			this.setPic((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file));
 			//SI IMAGE NULLE => SECONDAIRE
-			if(Interaction.compareImages((BufferedImage)pic.getImage(),ImageIO.read(new File("src/Images/CommonImage.png")))){
+			if(Interaction.compareImages((BufferedImage)pic.getImage(),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
 				this.setType(new Secondaire());
 			}else {
 				this.setType(new Conseille());
 				System.out.println(name);
 			}
+		}
+		if (isValidate) {
+			this.setType(new Conseille());
 		}
 	}
 }
