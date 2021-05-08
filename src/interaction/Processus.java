@@ -107,9 +107,14 @@ public class Processus {
 		//SI PATH
 		}else {
 			File file = new File(path);
+			
 			this.setPic((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file));
+
 			//SI IMAGE NULLE => SECONDAIRE
-			if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
+			if(pic == null) {
+				this.setType(new Secondaire());
+				this.setPic(Processus.errorPic);
+			}else if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
 				this.setType(new Secondaire());
 			}else {
 				this.setType(new Conseille());

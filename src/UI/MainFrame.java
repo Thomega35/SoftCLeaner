@@ -18,6 +18,7 @@ public class MainFrame extends JFrame{
             public void componentResized(ComponentEvent e) {
                 // This is only called when the user releases the mouse button.
             	//Main.window.setMinimumSize(new Dimension((int) Main.window.getMinimumSize().getWidth(),(int) (Main.window.getSize().getWidth()/1.95)));
+            	//Display.init();
             	Main.window.validate();
             	Main.window.revalidate();
             	Main.window.repaint();

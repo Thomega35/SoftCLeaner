@@ -73,6 +73,7 @@ public class Display {
 //		}
 	    //FileWriter myWriter = new FileWriter();
 // Creation PagePrincipal
+		int buttonSize = Main.window.getWidth()/15;
 		PagePrincipal.setLayout(new BorderLayout());
 		PagePrincipal.setBackground(Color.decode("#52057b"));
 		Font pb = new Font("pb", 1, Main.window.getWidth()/35);
@@ -80,6 +81,18 @@ public class Display {
 		JPanel headingPrincipal = new JPanel();
 		headingPrincipal.setLayout(new BorderLayout());
 		headingPrincipal.setBackground(Color.black);
+		
+		JPanel barandadvise = new JPanel();
+		barandadvise.setLayout(new BorderLayout());
+		barandadvise.setBackground(Color.ORANGE);
+		
+		JPanel bar = new JPanel();
+		bar.setLayout(new FlowLayout());
+		bar.setBackground(Color.black);
+		
+		JLabel infoBar = new JLabel("Objectif Journalier 5 Processus : ");
+		infoBar.setFont(pb);
+		infoBar.setForeground(Color.decode("#bc8be8"));
 		
 		JPanel raccourcis = new JPanel();
 		raccourcis.setLayout(new BoxLayout(raccourcis, BoxLayout.X_AXIS));
@@ -89,7 +102,7 @@ public class Display {
 		JButton parametre = new JButton();
 		parametre.setBorder(new EmptyBorder(0, 0, 0, 0));
 		parametre.setOpaque(false);
-		parametre.setPreferredSize(new Dimension(30,30));
+		parametre.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		parametre.setBackground(Color.black);
 		parametre.setFocusable(false);
 		parametre.addActionListener(new switchWindow(PageParametre));
@@ -97,7 +110,7 @@ public class Display {
 		JButton utilisateur = new JButton();
 		utilisateur.setOpaque(false);
 		utilisateur.setBorder(new EmptyBorder(0, 0, 0, 0));
-		utilisateur.setPreferredSize(new Dimension(30,30));
+		utilisateur.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		utilisateur.setBackground(Color.black);
 		utilisateur.setFocusable(false);
 		utilisateur.addActionListener(new switchWindow(PageUtilisateur));
@@ -105,7 +118,7 @@ public class Display {
 		JButton refresh = new JButton();
 		refresh.setOpaque(false);
 		refresh.setBorder(new EmptyBorder(0, 0, 0, 0));
-		refresh.setPreferredSize(new Dimension(30,30));
+		refresh.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		refresh.setBackground(Color.black);
 		refresh.setFocusable(false);
 		refresh.addActionListener(new RefreshAction());
@@ -113,7 +126,7 @@ public class Display {
 		JButton help = new JButton();
 		help.setOpaque(false);
 		help.setBorder(new EmptyBorder(0, 0, 0, 0));
-		help.setPreferredSize(new Dimension(30,30));
+		help.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		help.setBackground(Color.black);
 		help.setFocusable(false);
 		help.addActionListener(new switchWindow(PageAccueil));
@@ -127,7 +140,7 @@ public class Display {
 			e.printStackTrace();
 		}
 		
-		JLabel nbProcNow = new JLabel("Vous avez actuellement " + Interaction.getProcessus().size() + " processus en route :");
+		JLabel nbProcNow = new JLabel("Vous avez " + Interaction.getProcessus().size() + " processus en route :");
 		nbProcNow.setFont(pb);
 		nbProcNow.setForeground(Color.decode("#bc8be8"));
 		
@@ -138,17 +151,17 @@ public class Display {
 		JPanel headingPara = new JPanel();
 		headingPara.setLayout(new BorderLayout());
 		headingPara.setBackground(Color.black);
-		headingPara.setPreferredSize(new Dimension(30,30));
+		headingPara.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		
 		JPanel midPara = new JPanel();
 		midPara.setLayout(new BorderLayout());
 		midPara.setBackground(Color.black);
-		midPara.setPreferredSize(new Dimension(30,30));
+		midPara.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		
 		JButton retour = new JButton();
 		retour.setBorder(new EmptyBorder(0, 0, 0, 0));
 		retour.setOpaque(false);
-		retour.setPreferredSize(new Dimension(30,30));
+		retour.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		retour.setBackground(Color.black);
 		retour.setFocusable(false);
 		retour.addActionListener(new switchWindow(PagePrincipal));
@@ -158,7 +171,7 @@ public class Display {
 			e.printStackTrace();
 		}
 		
-		JLabel head = new JLabel("Autres processus principaux (UTILISATEURS EXPERIMENTÉS) : ");
+		JLabel head = new JLabel("Autres processus principaux (Non Sécurisé) : ");
 		head.setFont(pb);
 		head.setForeground(Color.decode("#bc8be8"));
 		
@@ -170,7 +183,7 @@ public class Display {
 		headingPara.add(head, BorderLayout.CENTER);
 
 		midPara.add(mid, BorderLayout.CENTER);
-		midPara.add(voidSpacer(new Dimension(30,30)), BorderLayout.WEST);
+		midPara.add(voidSpacer(new Dimension(buttonSize,buttonSize)), BorderLayout.WEST);
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		BoxAllProcessus.setBackground(Color.decode("#000000")); //USELESS 
@@ -182,12 +195,12 @@ public class Display {
 		JPanel headingUtili = new JPanel();
 		headingUtili.setLayout(new BorderLayout());
 		headingUtili.setBackground(Color.black);
-		headingUtili.setPreferredSize(new Dimension(30,30));
+		headingUtili.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		
 		JButton retour2 = new JButton();
 		retour2.setBorder(new EmptyBorder(0, 0, 0, 0));
 		retour2.setOpaque(false);
-		retour2.setPreferredSize(new Dimension(30,30));
+		retour2.setPreferredSize(new Dimension(buttonSize,buttonSize));
 		retour2.setBackground(Color.black);
 		retour2.setFocusable(false);
 		retour2.addActionListener(new switchWindow(PagePrincipal));
@@ -198,7 +211,7 @@ public class Display {
 		}
 		Font para = new java.awt.Font("Calibri", 0, 25);
 		
-		JLabel paraTitle = new JLabel("Information Utilisateur :                                                                                                                     ");
+		JLabel paraTitle = new JLabel("Information Utilisateur :");
 		paraTitle.setFont(pb);
 		paraTitle.setForeground(Color.decode("#bc8be8"));
 		
@@ -301,7 +314,7 @@ public class Display {
 		JScrollPane AdviseScroll = new JScrollPane(getBoxAdviseProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		//AdviseScroll.setBounds(0, 0, 930, 610);
-		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width,Main.window.getSize().width));
+		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width,Main.window.getSize().height-headingPrincipal.getHeight()));
 		getBoxAdviseProcessus().setBackground(Color.decode("#000000"));
 		AdviseScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
@@ -317,14 +330,17 @@ public class Display {
 		headingPrincipal.add(raccourcis, BorderLayout.EAST);
 		headingPrincipal.add(nbProcNow, BorderLayout.WEST);
 		raccourcis.add(help);
-		raccourcis.add(voidSpacer(new Dimension(5,30)));
+		raccourcis.add(voidSpacer(new Dimension(5,buttonSize)));
 		raccourcis.add(refresh);
-		raccourcis.add(voidSpacer(new Dimension(5,30)));
+		raccourcis.add(voidSpacer(new Dimension(5,buttonSize)));
 		raccourcis.add(parametre);
-		raccourcis.add(voidSpacer(new Dimension(5,30)));
+		raccourcis.add(voidSpacer(new Dimension(5,buttonSize)));
 		raccourcis.add(utilisateur);
 		PagePrincipal.add(headingPrincipal, BorderLayout.NORTH);
-		PagePrincipal.add(AdviseScroll, BorderLayout.CENTER);
+		barandadvise.add(AdviseScroll, BorderLayout.CENTER);
+		barandadvise.add(bar, BorderLayout.NORTH);
+		bar.add(infoBar);
+		PagePrincipal.add(barandadvise, BorderLayout.CENTER);
 		
 		Main.window.revalidate();
 	}
