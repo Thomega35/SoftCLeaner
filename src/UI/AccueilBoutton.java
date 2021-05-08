@@ -59,9 +59,9 @@ public class AccueilBoutton extends JButton{
 				g.drawImage(recyp, Main.window.getWidth()/2-recy.getHeight()/2, Main.window.getHeight()/4-recy.getHeight()/2, null);
 			}
 			String text1 = "Bienvenue,";
-			String text2 = "Vous pouvez ici voir les différents logiciels fonctionnant sur votre machine.";
-			String text3 = "SoftCleaner vous permet de réduire leur nombre sans risques.";
-			String text4 = "Pour cela appuyez sur l'icône         à côté du processus recommandé.";
+			String text2 = "Vous pouvez voir ici les différents logiciels fonctionnant sur votre machine.";
+			String text3 = "SoftCleaner vous permet de réduire leur nombre sans risque.";
+			String text4 = "Pour cela, appuyez sur l'icône         à côté du processus recommandé.";
 			String text5 = "Vous pouvez aussi voir vos informations dans         .";
 			String text6 = "Où aller sur         pour voir la liste de logiciels complémentaires. (UTILISATEURS EXPERIMENTÉS)";
 			JLabel consigne1 = new JLabel(text1);

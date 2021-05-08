@@ -184,7 +184,7 @@ public class Display {
 		info1.setFont(para);
 		info1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info2 = new JLabel("Nombre de lancement de l'application : 4");
+		JLabel info2 = new JLabel("Nombre de lancement de l'application : " + 4);
 		info2.setForeground(Color.decode("#bc8be8"));
 		info2.setPreferredSize(new Dimension(50,50));
 		info2.setFont(para);
@@ -202,7 +202,7 @@ public class Display {
 		info4.setFont(para);
 		info4.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel info5 = new JLabel("Taille des fifférents composants : 12");
+		JLabel info5 = new JLabel("Taille des différents composants : 12");
 		info5.setForeground(Color.decode("#bc8be8"));
 		info5.setPreferredSize(new Dimension(20,50));
 		info5.setFont(para);

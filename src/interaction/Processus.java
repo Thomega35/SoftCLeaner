@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
+import UI.CalcImage;
 import main.Main;
 import type.Secondaire;
 import type.Systeme;
@@ -108,7 +109,7 @@ public class Processus {
 			File file = new File(path);
 			this.setPic((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file));
 			//SI IMAGE NULLE => SECONDAIRE
-			if(Interaction.compareImages((BufferedImage)pic.getImage(),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
+			if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
 				this.setType(new Secondaire());
 			}else {
 				this.setType(new Conseille());
