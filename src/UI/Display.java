@@ -60,18 +60,18 @@ public class Display {
 		Main.window.setContentPane(PageAccueil);
 		
 //Donnes User
-		System.out.println(Main.data.get(0));
-		Main.data = (ArrayList<String>) Arrays.asList((Integer.parseInt(Main.data.get(0),10)+1) + "", Main.data.get(1));
-		File myObj = new File("src/Images/DonnesUser.java");
-	      try {
-			if (myObj.createNewFile()) {
-				 
-			  }
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    FileWriter myWriter = new FileWriter();
+//		System.out.println(Main.data.get(0));
+//		Main.data = (ArrayList<String>) Arrays.asList((Integer.parseInt(Main.data.get(0),10)+1) + "", Main.data.get(1));
+//		File myObj = new File("src/Images/DonnesUser.java");
+//	      try {
+//			if (myObj.createNewFile()) {
+//				 
+//			  }
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+	    //FileWriter myWriter = new FileWriter();
 // Creation PagePrincipal
 		PagePrincipal.setLayout(new BorderLayout());
 		PagePrincipal.setBackground(Color.decode("#52057b"));
