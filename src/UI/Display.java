@@ -8,18 +8,28 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
+import java.awt.event.ComponentEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.imageio.ImageIO;
 import javax.sound.midi.VoiceStatus;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+
 import interaction.*;
 import main.Main;
 import type.Conseille;
 import type.Secondaire;
 import type.Systeme;
+import java.lang.*;
+
+
 
 @SuppressWarnings("unused")
 public class Display {
@@ -36,9 +46,9 @@ public class Display {
 	public static void init() {
 
 // FRAME
-		Main.window = new JFrame("SoftCleaner V1.5");
+		Main.window = new MainFrame("SoftCleaner V1.5");
 		Main.window.setSize(950, 700);
-		Main.window.setMinimumSize(new Dimension(870,550));
+		Main.window.setMinimumSize(new Dimension(870,600));
 		Main.window.setLocationRelativeTo(null);
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,10 +58,24 @@ public class Display {
 			e.printStackTrace();
 		}
 		Main.window.setContentPane(PageAccueil);
-
+		
+//Donnes User
+		System.out.println(Main.data.get(0));
+		Main.data = (ArrayList<String>) Arrays.asList((Integer.parseInt(Main.data.get(0),10)+1) + "", Main.data.get(1));
+		File myObj = new File("src/Images/DonnesUser.java");
+	      try {
+			if (myObj.createNewFile()) {
+				 
+			  }
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    FileWriter myWriter = new FileWriter();
 // Creation PagePrincipal
 		PagePrincipal.setLayout(new BorderLayout());
 		PagePrincipal.setBackground(Color.decode("#52057b"));
+		Font pb = new Font("pb", 1, Main.window.getWidth()/35);
 		
 		JPanel headingPrincipal = new JPanel();
 		headingPrincipal.setLayout(new BorderLayout());
@@ -104,6 +128,7 @@ public class Display {
 		}
 		
 		JLabel nbProcNow = new JLabel("Vous avez actuellement " + Interaction.getProcessus().size() + " processus en route :");
+		nbProcNow.setFont(pb);
 		nbProcNow.setForeground(Color.decode("#bc8be8"));
 		
 //Creation PageParametre
@@ -133,10 +158,12 @@ public class Display {
 			e.printStackTrace();
 		}
 		
-		JLabel head = new JLabel("Autres processus principaux : (UTILISATEURS EXPERIMENTÉS)");
+		JLabel head = new JLabel("Autres processus principaux (UTILISATEURS EXPERIMENTÉS) : ");
+		head.setFont(pb);
 		head.setForeground(Color.decode("#bc8be8"));
 		
 		JLabel mid = new JLabel("Processus systems : ");
+		mid.setFont(pb);
 		mid.setForeground(Color.decode("#bc8be8"));
 		
 		headingPara.add(retour, BorderLayout.WEST);
@@ -172,6 +199,7 @@ public class Display {
 		Font para = new java.awt.Font("Calibri", 0, 25);
 		
 		JLabel paraTitle = new JLabel("Information Utilisateur :                                                                                                                     ");
+		paraTitle.setFont(pb);
 		paraTitle.setForeground(Color.decode("#bc8be8"));
 		
 		JPanel infoUtili = new JPanel();
@@ -254,7 +282,7 @@ public class Display {
 		getBoxMainProcessus().setLayout(new BoxLayout(getBoxMainProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane mainScroll = new JScrollPane(getBoxMainProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		mainScroll.setBounds(0, 0, 930, 610);
+		//mainScroll.setBounds(0, 0, 930, 610);
 		mainScroll.setPreferredSize(new Dimension(Main.window.getSize().width/n,Main.window.getSize().width/n));
 		getBoxMainProcessus().setBackground(Color.decode("#000000")); 
 		mainScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -263,7 +291,7 @@ public class Display {
 		getBoxOtherProcessus().setLayout(new BoxLayout(getBoxOtherProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane otherScroll = new JScrollPane(getBoxOtherProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		otherScroll.setBounds(0, 0, 930, 610);
+		//otherScroll.setBounds(0, 0, 930, 610);
 		otherScroll.setPreferredSize(new Dimension(Main.window.getSize().width/n,Main.window.getSize().width/n));
 		getBoxOtherProcessus().setBackground(Color.decode("#000000"));
 		otherScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -272,7 +300,7 @@ public class Display {
 		getBoxAdviseProcessus().setLayout(new BoxLayout(getBoxAdviseProcessus(), BoxLayout.Y_AXIS));
 		JScrollPane AdviseScroll = new JScrollPane(getBoxAdviseProcessus(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		AdviseScroll.setBounds(0, 0, 930, 610);
+		//AdviseScroll.setBounds(0, 0, 930, 610);
 		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width,Main.window.getSize().width));
 		getBoxAdviseProcessus().setBackground(Color.decode("#000000"));
 		AdviseScroll.setBorder(new EmptyBorder(0, 0, 0, 0));

@@ -3,11 +3,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import interaction.*;
+import main.Main;
 
 @SuppressWarnings("serial")
 public class BoxProcessus extends JPanel {
@@ -15,9 +17,10 @@ public class BoxProcessus extends JPanel {
 	public BoxProcessus(Processus p) {
 		super();
 		int hauteurBox = 30;
+		int longueurBox = 500;
 		String couleurFondBoxP = "#52057b";
 		setLayout(new FlowLayout());
-		setPreferredSize(new Dimension(300,hauteurBox));
+		setPreferredSize(new Dimension(longueurBox,hauteurBox));
 		setBackground(Color.decode("#000000"));
 		setOpaque(false);
 		
@@ -26,6 +29,7 @@ public class BoxProcessus extends JPanel {
 		
 		JLabel blocPic = new JLabel(p.getPic());
 		Label blocName = new Label(p.getName());
+		blocName.setFont(new Font("IntroFont", 1,  Main.window.getWidth()/47));
 		JButton redButton = new ShutButton();
 		
 		blocPic.setPreferredSize(new Dimension(40,hauteurBox+12));
@@ -39,7 +43,8 @@ public class BoxProcessus extends JPanel {
 		redButton.setOpaque(true);
 		
 		this.add(boxP);
-		boxP.setPreferredSize(new Dimension(300,30));
+		boxP.setPreferredSize(new Dimension(longueurBox,hauteurBox));
+		boxP.setMinimumSize(new Dimension(longueurBox,hauteurBox));
 		boxP.setOpaque(true);
 		boxP.setBackground(Color.decode(couleurFondBoxP));//3c415c
 		boxP.add(blocPic, BorderLayout.WEST);
@@ -48,13 +53,3 @@ public class BoxProcessus extends JPanel {
 		boxP.add(redButton, BorderLayout.EAST);
 	}
 }
-
-
-
-
-
-
-
-
-
-

@@ -10,6 +10,7 @@ public class switchWindow implements ActionListener{
 	public void actionPerformed(ActionEvent action) {
 		Main.window.setContentPane(panel);
 		Main.window.revalidate();
+		Main.window.repaint();
 	}
 	
 	public switchWindow(Container panel) {
