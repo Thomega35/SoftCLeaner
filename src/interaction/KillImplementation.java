@@ -2,7 +2,11 @@ package interaction;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import UI.Display;
+import main.Main;
+
 import java.awt.event.*;
 
 public class KillImplementation implements ActionListener{
@@ -22,6 +26,10 @@ public class KillImplementation implements ActionListener{
 		Display.setListeProcessus(Interaction.getProcessus(),
 				//(JPanel) Main.window.getContentPane().getComponent(0)
 				Display.getBoxMainProcessus(), Display.getBoxOtherProcessus(), Display.getBoxAdviseProcessus());
+		Display.addObjectif();
+		Main.data =  new ArrayList<String>(Arrays.asList(Main.data.get(0), ((Integer.parseInt(Main.data.get(1),10)+1))+""));
+		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1),"src/DonnesUser.txt");
+		Display.setInfo();
 	}
 	
 	public KillImplementation (java.util.List<String> list) {

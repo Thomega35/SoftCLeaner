@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import UI.CalcImage;
 import main.Main;
 import type.Secondaire;
@@ -109,16 +111,18 @@ public class Processus {
 			File file = new File(path);
 			
 			this.setPic((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file));
-
+			
 			//SI IMAGE NULLE => SECONDAIRE
 			if(pic == null) {
 				this.setType(new Secondaire());
 				this.setPic(Processus.errorPic);
-			}else if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png"))) || !isValidate){
+			}else if(isValidate){
+				this.setType(new Conseille());
+			}else if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png")))){
 				this.setType(new Secondaire());
 			}else {
-				this.setType(new Conseille());
-				//System.out.println(name);
+				this.setType(new Secondaire());
+				//System.out.println(this.name);
 			}
 		}
 		if (isValidate) {

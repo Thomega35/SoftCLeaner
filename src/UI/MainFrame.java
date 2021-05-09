@@ -1,11 +1,8 @@
 package UI;
 
-import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-
 import javax.swing.JFrame;
-
 import main.Main;
 
 public class MainFrame extends JFrame{

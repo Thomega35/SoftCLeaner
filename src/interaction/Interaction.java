@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -87,6 +88,17 @@ public class Interaction {
 		     res.add(scanner.nextLine());
 		}
 		return res;
+	}
+	
+	public static void putInFile(String txt, String file) {
+		try {
+			PrintWriter myWriter = new PrintWriter(new File(file));
+			myWriter.write(txt);
+			myWriter.flush();
+			myWriter.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static boolean compareImages(BufferedImage imgA, BufferedImage imgB) {

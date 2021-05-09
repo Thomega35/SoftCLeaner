@@ -92,27 +92,31 @@ public class AccueilBoutton extends JButton{
 			
 			//System.out.println(metricsInit);
 			g.drawString("SoftCleaner©", (int) (Main.window.getWidth()/2-metricsInit.stringWidth("SoftCleaner©")/2), (int) (Main.window.getHeight()-40-2*(metricsInit.getHeight())));
-			g.drawString("Groupe DELAPART Thomas & BESNARD Valentin & DAVID Corentin", (int) (Main.window.getWidth()/2-metricsInit.stringWidth("Groupe DELAPART Thomas & BESNARD Valentin & DAVID Corentin")/2), (int) (Main.window.getHeight()-40-(metricsInit.getHeight())));
-			g.drawString("Developpeur : DELAPART Thomas", (int) (Main.window.getWidth()/2-metricsInit.stringWidth("Developpeur : DELAPART Thomas")/2), (int) (Main.window.getHeight()-40));
+			g.drawString("Groupe DELAPART Thomas & BESNARD Valentin & DAVID Corentin", (int) (Main.window.getWidth()/2-metricsInit.stringWidth("Groupe DELAPART Thomas & BESNARD Valentin & DAVID Corentin")/2), (int) (Main.window.getHeight()-42.5-(metricsInit.getHeight())));
+			g.drawString("Developpeur : DELAPART Thomas", (int) (Main.window.getWidth()/2-metricsInit.stringWidth("Developpeur : DELAPART Thomas")/2), (int) (Main.window.getHeight()-45));
 			
 			
-			g.setColor(Color.decode("#bc8be8"));
+			g.setColor(Color.decode("#B547E5"));
 			g.setFont(pb);
 			String text7 = "Comment réduire la consommation énergétique de votre ordinateur ?";
-			String text8 = "La consommation d'énergie de votre ordinateur dépend ";
+			String text8 = "La consommation d'énergie de votre ordinateur dépend";
 			String text9 = "majoritairement du nombre de logiciels dont il doit s'occuper.";
-			String text10 = "Vous pouvez donc réduire votre facture d'éléctricité,";
-			String text11 = "tout en augmentant drastiquement la longévité de vos batteries,";
-			String text12 = "en réduisant leur nombre.";
+			String text10 = "Vous pouvez donc réduire votre facture d'éléctricité, tout en augmentant";
+			String text11 = "drastiquement la longévité de vos batteries, en réduisant leur nombre.";
+			String text12 = "Un objectif de 5 arrêts de logiciel est souhaitable à chaque utilisation";
 			
-			double freeSpace = (Main.window.getHeight()-40-3*(metricsInit.getHeight())-4*metricsIntro.getHeight())-(recy.getHeight()+15+6*metricsIntro.getHeight()+1*metricsPb.getHeight());
+			double freeSpace = (Main.window.getHeight()-40-3*(metricsInit.getHeight())-4*metricsIntro.getHeight())-(recy.getHeight()+15+6*metricsIntro.getHeight()+1*metricsPb.getHeight());			
 			g.drawString(text7,(int) (Main.window.getWidth()/2-metricsPb.stringWidth(text7)/2), recy.getHeight()+15+1*metricsPb.getHeight());
+			g.setColor(Color.decode("#bc8be8"));
 			g.setFont(intro);
 			g.drawString(text8,(int) (Main.window.getWidth()/2-metricsIntro.stringWidth(text8)/2), (int) (recy.getHeight()+15+1*metricsIntro.getHeight()+1*metricsPb.getHeight()+freeSpace/5));
 			g.drawString(text9,(int) (Main.window.getWidth()/2-metricsIntro.stringWidth(text9)/2), (int) (recy.getHeight()+15+2*metricsIntro.getHeight()+1*metricsPb.getHeight()+freeSpace/5*2));
 			g.drawString(text10,(int) (Main.window.getWidth()/2-metricsIntro.stringWidth(text10)/2), (int) (recy.getHeight()+15+3*metricsIntro.getHeight()+1*metricsPb.getHeight()+freeSpace/5*3));
 			g.drawString(text11,(int) (Main.window.getWidth()/2-metricsIntro.stringWidth(text11)/2), (int) (recy.getHeight()+15+4*metricsIntro.getHeight()+1*metricsPb.getHeight()+freeSpace/5*4));
-			g.drawString(text12,(int) (Main.window.getWidth()/2-metricsIntro.stringWidth(text12)/2), (int) (recy.getHeight()+15+5*metricsIntro.getHeight()+1*metricsPb.getHeight()+freeSpace));
+			g.setColor(Color.decode("#B547E5"));
+			g.setFont(new Font("IntroFont", 1,  Main.window.getWidth()/40));
+			FontMetrics metricsobj= g.getFontMetrics(new Font("IntroFont", 1,  Main.window.getWidth()/40));
+			g.drawString(text12,(int) (Main.window.getWidth()/2-metricsobj.stringWidth(text12)/2), (int) (recy.getHeight()+15+4*metricsIntro.getHeight()+1*metricsobj.getHeight()+1*metricsPb.getHeight()+freeSpace));
 			
 			System.out.println();
 			
