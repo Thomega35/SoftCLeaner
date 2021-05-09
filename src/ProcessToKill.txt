@@ -10,7 +10,6 @@ Discord.exe
 Spotify.exe
 chrome.exe
 steam.exe
-steamwebhelper.exe
 Teams.exe
 YourPhone.exe
 Battle.net.exe

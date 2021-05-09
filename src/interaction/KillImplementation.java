@@ -18,7 +18,7 @@ public class KillImplementation implements ActionListener{
 		try {
 			for (String s : PID) {
 				Runtime.getRuntime().exec("powershell.exe taskkill /F /PID " + s);
-				System.out.println("powershell.exe taskkill /F /PID " + s);
+				//System.out.println("powershell.exe taskkill /F /PID " + s);
 			}
 		} catch (IOException exeption) {
 			exeption.printStackTrace();

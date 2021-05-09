@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -49,11 +50,11 @@ public class Display {
 	private static JProgressBar objectif;
 	private static Font pb;
 	private static JLabel nbProcNow;
-	
+
 	private static JLabel info1;
 	private static JLabel info2;
 	private static JLabel info3;
-	
+
 	private static void buildWindow() {
 		Main.window = new MainFrame("SoftCleaner V1.5");
 		Main.window.setSize(950, 700);
@@ -89,14 +90,16 @@ public class Display {
 		Image utilisateurim = ImageIO.read(Processus.class.getResource("/Images/User.png"));
 		Image utilisateurimRol = ImageIO.read(Processus.class.getResource("/Images/UserRolover.png"));
 		Image utilisateurimPre = ImageIO.read(Processus.class.getResource("/Images/UserPressed.png"));
-		
+
 		JPanel headingPrincipal = new JPanel();
 		headingPrincipal.setLayout(new BorderLayout());
 		headingPrincipal.setBackground(Color.black);
+		headingPrincipal.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		JPanel barandadvise = new JPanel();
 		barandadvise.setLayout(new BorderLayout());
 		barandadvise.setBackground(Color.ORANGE);
+		barandadvise.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		bar.setLayout(new FlowLayout());
 		bar.setBackground(Color.black);
@@ -107,7 +110,7 @@ public class Display {
 
 		UIManager.put("ProgressBar.background", Color.decode("#52057b"));
 		UIManager.put("ProgressBar.foreground", Color.decode("#bc8be8"));
-		UIManager.put("ProgressBar.selectionBackground", Color.decode("#bc8be8"));//5C236D
+		UIManager.put("ProgressBar.selectionBackground", Color.decode("#bc8be8"));// 5C236D
 		UIManager.put("ProgressBar.selectionForeground", Color.decode("#52057b"));
 
 		objectif = new JProgressBar(SwingConstants.HORIZONTAL, 0, 5);
@@ -165,6 +168,8 @@ public class Display {
 		AdviseScroll.setPreferredSize(new Dimension(Main.window.getSize().width,
 				Main.window.getSize().height - headingPrincipal.getHeight()));
 		getBoxAdviseProcessus().setBackground(Color.decode("#000000"));
+		bar.setBorder(new EmptyBorder(0, 0, 0, 0));
+		bar.setBackground(Color.black);
 		AdviseScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		headingPrincipal.add(raccourcis, BorderLayout.EAST);
@@ -185,11 +190,11 @@ public class Display {
 	}
 
 	private static void buildPageParametre(int buttonSize) throws IOException {
-		
+
 		Image arrowim = ImageIO.read(Processus.class.getResource("/Images/Arrow.png"));
 		Image arrowimRol = ImageIO.read(Processus.class.getResource("/Images/ArrowRolover.png"));
 		Image arrowimPre = ImageIO.read(Processus.class.getResource("/Images/ArrowPressed.png"));
-		
+
 		PageParametre.setLayout(new BorderLayout());
 		PageParametre.setBackground(Color.decode("#000000"));
 
@@ -219,10 +224,10 @@ public class Display {
 		mid.setFont(pb);
 		mid.setForeground(Color.decode("#bc8be8"));
 
-		//mainBorder.add(retour2, BorderLayout.WEST);
+		// mainBorder.add(retour2, BorderLayout.WEST);
 		mainBorder.add(retour2, BorderLayout.WEST);
 
-		//midPara.add(voidSpacer(buttonSize, buttonSize), BorderLayout.WEST);
+		// midPara.add(voidSpacer(buttonSize, buttonSize), BorderLayout.WEST);
 		JPanel BoxAllProcessus = new JPanel();
 		BoxAllProcessus.setLayout(new BoxLayout(BoxAllProcessus, BoxLayout.Y_AXIS));
 		BoxAllProcessus.setBackground(Color.black);
@@ -251,8 +256,8 @@ public class Display {
 		otherScroll.getVerticalScrollBar().setUnitIncrement(5);
 
 		// Parametre
-		//BoxAllProcessus.add(mainBorder);
-		
+		// BoxAllProcessus.add(mainBorder);
+
 		BoxAllProcessus.add(head);
 		BoxAllProcessus.add(mainScroll);
 		BoxAllProcessus.add(mid);
@@ -264,7 +269,7 @@ public class Display {
 	private static void buildPageUtilisateur(int buttonSize) throws IOException {
 		PageUtilisateur.setLayout(new BorderLayout());
 		PageUtilisateur.setBackground(Color.decode("#000000"));
-		
+
 		Image arrowim = ImageIO.read(Processus.class.getResource("/Images/Arrow.png"));
 		Image arrowimRol = ImageIO.read(Processus.class.getResource("/Images/ArrowRolover.png"));
 		Image arrowimPre = ImageIO.read(Processus.class.getResource("/Images/ArrowPressed.png"));
@@ -281,7 +286,7 @@ public class Display {
 		retour2.setBackground(Color.black);
 		retour2.setFocusable(false);
 		retour2.addActionListener(new switchWindow(PagePrincipal));
-		
+
 		Font para = new java.awt.Font("Calibri", 0, 25);
 
 		JLabel paraTitle = new JLabel("Information Utilisateur :");
@@ -304,7 +309,7 @@ public class Display {
 		info2.setFont(para);
 		info2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		double rap = Double.parseDouble(Main.data.get(1))/Double.parseDouble(Main.data.get(0));
+		double rap = Double.parseDouble(Main.data.get(1)) / Double.parseDouble(Main.data.get(0));
 		info3 = new JLabel("Nombre de logiciels arrétés par utilisation : " + rap);
 		info3.setForeground(Color.decode("#bc8be8"));
 		info3.setPreferredSize(new Dimension(50, 50));
@@ -336,7 +341,7 @@ public class Display {
 		info7.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		infoUtili.add(info1);
-		//infoUtili.add(voidSpacer(20, 10));
+		// infoUtili.add(voidSpacer(20, 10));
 		infoUtili.add(info2);
 		infoUtili.add(info3);
 		infoUtili.add(Box.createVerticalGlue());
@@ -360,50 +365,50 @@ public class Display {
 	public static void setInfo() {
 		info1.setText("Nombre de processus arrêtés grâce à l'application : " + Main.data.get(0));
 		info2.setText("Nombre de lancement de l'application : " + Main.data.get(1));
-		double rap = Integer.parseInt(Main.data.get(1))/Integer.parseInt(Main.data.get(0));
+		double rap = Integer.parseInt(Main.data.get(1)) / Integer.parseInt(Main.data.get(0));
 		info3.setText("Nombre de logiciels arrétés par utilisation : " + rap);
 	}
 
-	public static void init() {
+	public static void init() throws IOException {
 
 // FRAME
 		buildWindow();
 		Main.window.setContentPane(PageAccueil);
 
 //Donnes User //nb lancement application //nb fermeture procvessus (//nb fermeture moyenne)
-		//REMPLISSAGE DE DATA
-		System.out.println(Processus.class.getResource("/Images/Refresh.png"));
-		System.out.println(Processus.class.getResourceAsStream("/DonnesUser.txt"));
-		if (new File("./src/DonnesUser.txt").canRead()) {
-			Main.data = (ArrayList<String>) Interaction.extractMainProcess(Processus.class.getResourceAsStream("/DonnesUser.txt"));
-		//SI PAS DE FILE ON EN FABRIQUE UN
-		}else{
-			try {
-				FileWriter fw;
-				fw = new FileWriter(new File("src/DonnesUser.txt"));
-				fw.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+		// REMPLISSAGE DE DATA
+		//System.out.println(Processus.class.getResourceAsStream("/DonnesUser.txt"));
+		InputStream path = Processus.class.getResourceAsStream("/DonnesUser.txt");
+		File logFileObj = new File(System.getProperty("user.dir"), "DonnesUser.txt");
+		if (logFileObj.canRead()) {
+			Main.data = (ArrayList<String>) Interaction
+					.extractMainProcessFile(logFileObj);
+			// SI PAS DE FILE ON EN FABRIQUE UN
+		} else {
+			Interaction.putInFile("");
 		}
-		//INITALISATION DATA SELON CONTENU 
-    	if (Main.data.size() == 0) {
+		// INITALISATION DATA SELON CONTENU
+		if (Main.data.size() == 0) {
 			Interaction.putInFile("0\n0");
-			Main.data = (ArrayList<String>) Interaction.extractMainProcess(Processus.class.getResourceAsStream("/DonnesUser.txt")); //nb lancement application //nb fermeture procvessus (//nb fermeture moyenne)
-		}else {
+			Main.data = (ArrayList<String>) Interaction
+					.extractMainProcessFile(logFileObj); // nb lancement
+																									// application //nb
+																									// fermeture
+																									// procvessus (//nb
+																									// fermeture
+																									// moyenne)
+		} else {
 			Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1));
 		}
-    	//nb lancement application ++
-		Main.data =  new ArrayList<>(Arrays.asList((Integer.parseInt(Main.data.get(0),10)+1) + "", Main.data.get(1)));
+		// nb lancement application ++
+		Main.data = new ArrayList<>(Arrays.asList((Integer.parseInt(Main.data.get(0), 10) + 1) + "", Main.data.get(1)));
 		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1));
-		Interaction.putInFile("hola amigos");
-		
 //	    System.out.println(Main.data.get(0));
 //	    System.out.println(Main.data.get(1));
 //	    System.out.println(Main.data);
-		
-		//myWriter.write(Main.data.get(0));
-		
+
+		// myWriter.write(Main.data.get(0));
+
 		// Creation PagePrincipal
 		int buttonSize = Main.window.getWidth() / 15;
 		pb = new Font("pb", 1, Main.window.getWidth() / 35);
@@ -451,11 +456,11 @@ public class Display {
 
 	public static void update() {
 		ArrayList<Processus> listp = Interaction.getProcessus();
-		setListeProcessus(listp, getBoxMainProcessus(), getBoxOtherProcessus(),getBoxAdviseProcessus());
+		setListeProcessus(listp, getBoxMainProcessus(), getBoxOtherProcessus(), getBoxAdviseProcessus());
 		Main.window.revalidate();
 		Main.window.repaint();
 		nbProcNow.setText("Vous avez " + listp.size() + " processus en route :");
-		
+
 		// TIMER
 //		try {
 //			// TODO changer l'update

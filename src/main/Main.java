@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		interaction.Processus.loadAdminPic();
-		mainProcess = (ArrayList<String>) Interaction.extractMainProcess(Processus.class.getResourceAsStream("/ProcessToKill.txt"));
+		mainProcess = (ArrayList<String>) Interaction.extractMainProcesStream(Processus.class.getResourceAsStream("/ProcessToKill.txt"));
 	    Display.init();
 	   	Display.update();
 	}

@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonModel;
@@ -34,12 +33,12 @@ public class AccueilBoutton extends JButton{
         super.paintComponent(g);
         //Main.window.setMinimumSize(new Dimension((int) Main.window.getMinimumSize().getWidth(),Main.window.getWidth()/2));
         try {
-			BufferedImage recyr = ImageIO.read(new File("src/Images/Recycling_symbol.png"));
-			BufferedImage recy = ImageIO.read(new File("src/Images/Recycling_symbol_pressed.png"));
-			BufferedImage recyp = ImageIO.read(new File("src/Images/Recycling_symbol_rollover.png"));
-			BufferedImage sd = ImageIO.read(new File("src/Images/Shut_down.png"));
-			BufferedImage pm = ImageIO.read(new File("src/Images/Engrenage.png"));
-			BufferedImage us = ImageIO.read(new File("src/Images/User.png"));
+			BufferedImage recyr = ImageIO.read(AccueilBoutton.class.getResource("/Images/Recycling_symbol.png"));
+			BufferedImage recy = ImageIO.read(AccueilBoutton.class.getResource("/Images/Recycling_symbol_pressed.png"));
+			BufferedImage recyp = ImageIO.read(AccueilBoutton.class.getResource("/Images/Recycling_symbol_rollover.png"));
+			BufferedImage sd = ImageIO.read(AccueilBoutton.class.getResource("/Images/Shut_down.png"));
+			BufferedImage pm = ImageIO.read(AccueilBoutton.class.getResource("/Images/Engrenage.png"));
+			BufferedImage us = ImageIO.read(AccueilBoutton.class.getResource("/Images/User.png"));
 			recy = ShutButton.resizeImage(recy, (int) getPreferredSize().getHeight()/4, (int)getPreferredSize().getHeight()/4);
 			recyp = ShutButton.resizeImage(recyp, (int) getPreferredSize().getHeight()/4, (int)getPreferredSize().getHeight()/4);
 			recyr = ShutButton.resizeImage(recyr, (int) getPreferredSize().getHeight()/4, (int)getPreferredSize().getHeight()/4);
@@ -118,7 +117,7 @@ public class AccueilBoutton extends JButton{
 			FontMetrics metricsobj= g.getFontMetrics(new Font("IntroFont", 1,  Main.window.getWidth()/40));
 			g.drawString(text12,(int) (Main.window.getWidth()/2-metricsobj.stringWidth(text12)/2), (int) (recy.getHeight()+15+4*metricsIntro.getHeight()+1*metricsobj.getHeight()+1*metricsPb.getHeight()+freeSpace));
 			
-			System.out.println();
+			//System.out.println();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

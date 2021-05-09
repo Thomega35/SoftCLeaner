@@ -6,11 +6,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
+
+import interaction.Processus;
 
 public class ShutButton extends JButton {
 	 
@@ -44,9 +45,9 @@ public class ShutButton extends JButton {
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {
-			BufferedImage sdr = ImageIO.read(new File("src/Images/Shut_down.png"));
-			BufferedImage sd = ImageIO.read(new File("src/Images/Shut_down_pressed.png"));
-			BufferedImage sdp = ImageIO.read(new File("src/Images/Shut_down_rollover.png"));
+			BufferedImage sdr = ImageIO.read(Processus.class.getResource("/Images/Shut_down.png"));
+			BufferedImage sd = ImageIO.read(Processus.class.getResource("/Images/Shut_down_pressed.png"));
+			BufferedImage sdp = ImageIO.read(Processus.class.getResource("/Images/Shut_down_rollover.png"));
 			sd = resizeImage(sd, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());
 			sdp = resizeImage(sdp, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());
 			sdr = resizeImage(sdr, (int) getPreferredSize().getHeight(), (int)getPreferredSize().getWidth());

@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -79,7 +78,22 @@ public class Interaction {
 		return true;
 	}
 
-	public static List<String> extractMainProcess(InputStream inputStream) {
+	public static List<String> extractMainProcessFile(File inputStream) {
+		Scanner scanner = null;
+		List<String> res = new ArrayList<String>();
+		try {
+			scanner = new Scanner(inputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		while(scanner.hasNext()){
+		     res.add(scanner.nextLine());
+		}
+		scanner.close();
+		return res;
+	}
+	
+	public static List<String> extractMainProcesStream(InputStream inputStream) {
 		Scanner scanner = null;
 		List<String> res = new ArrayList<String>();
 		scanner = new Scanner(inputStream);

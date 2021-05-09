@@ -114,7 +114,7 @@ public class Processus {
 				this.setPic(Processus.errorPic);
 			}else if(isValidate){
 				this.setType(new Conseille());
-			}else if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(new File("src/Images/CommonImage.png")))){
+			}else if(Interaction.compareImages(CalcImage.iconToBuff(pic),ImageIO.read(Processus.class.getResource("/Images/CommonImage.png")))){
 				this.setType(new Secondaire());
 			}else {
 				this.setType(new Secondaire());
