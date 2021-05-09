@@ -28,7 +28,7 @@ public class KillImplementation implements ActionListener{
 				Display.getBoxMainProcessus(), Display.getBoxOtherProcessus(), Display.getBoxAdviseProcessus());
 		Display.addObjectif();
 		Main.data =  new ArrayList<String>(Arrays.asList(Main.data.get(0), ((Integer.parseInt(Main.data.get(1),10)+1))+""));
-		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1),"src/DonnesUser.txt");
+		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1));
 		Display.setInfo();
 	}
 	

@@ -1,9 +1,12 @@
 package interaction;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -76,29 +79,41 @@ public class Interaction {
 		return true;
 	}
 
-	public static List<String> extractMainProcess(String file) {
+	public static List<String> extractMainProcess(InputStream inputStream) {
 		Scanner scanner = null;
 		List<String> res = new ArrayList<String>();
-		try {
-			scanner = new Scanner(new File(file));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		scanner = new Scanner(inputStream);
 		while(scanner.hasNext()){
 		     res.add(scanner.nextLine());
 		}
+		scanner.close();
 		return res;
 	}
 	
-	public static void putInFile(String txt, String file) {
-		try {
-			PrintWriter myWriter = new PrintWriter(new File(file));
-			myWriter.write(txt);
-			myWriter.flush();
-			myWriter.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public static void putInFile(String txt) {
+	
+		String logFile   = "DonnesUser.txt";
+	    BufferedWriter logFileWriter;
+	    File logFileObj = new File(System.getProperty("user.dir"), logFile);
+	    
+	    try {
+//	    	System.out.println("hello");
+//	    	System.out.println(logFileObj);
+//	    	System.out.println(new File(System.getProperty("user.dir"), "DonnesUser.txt"));
+//	    	System.out.println(new FileWriter(new File(System.getProperty("user.dir"), "DonnesUser.txt")));
+	        FileWriter fileWriter = new FileWriter(logFileObj);
+	        logFileWriter = new BufferedWriter(fileWriter);
+	        logFileWriter.write(txt);
+	        logFileWriter.flush();
+	        logFileWriter.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+//		PrintWriter myWriter = new PrintWriter(Processus.class.getResourceAsStream("/DonnesUser.txt"));
+//		myWriter.write(txt);
+//		myWriter.flush();
+//		myWriter.close();
 	}
 	
 	public static boolean compareImages(BufferedImage imgA, BufferedImage imgB) {

@@ -62,7 +62,7 @@ public class Display {
 		Main.window.setVisible(true);
 		Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
-			Main.window.setIconImage(ImageIO.read(new File("src/Images/Recycling_symbol.png")));
+			Main.window.setIconImage(ImageIO.read(Processus.class.getResource("/Images/Recycling_symbol.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -74,21 +74,21 @@ public class Display {
 //Image 
 		// .getScaledInstance((int) help.getPreferredSize().getWidth(), (int)
 		// help.getPreferredSize().getHeight(), Image.SCALE_DEFAULT))
-		Image helpim = ImageIO.read(new File("src/Images/Help.png"));
-		Image helpimRol = ImageIO.read(new File("src/Images/HelpRolover.png"));
-		Image helpimPre = ImageIO.read(new File("src/Images/HelpPressed.png"));
+		Image helpim = ImageIO.read(Processus.class.getResource("/Images/Help.png"));
+		Image helpimRol = ImageIO.read(Processus.class.getResource("/Images/HelpRolover.png"));
+		Image helpimPre = ImageIO.read(Processus.class.getResource("/Images/HelpPressed.png"));
 
-		Image refreshim = ImageIO.read(new File("src/Images/Refresh.png"));
-		Image refreshimRol = ImageIO.read(new File("src/Images/RefreshRolover.png"));
-		Image refreshimPre = ImageIO.read(new File("src/Images/RefreshPressed.png"));
+		Image refreshim = ImageIO.read(Processus.class.getResource("/Images/Refresh.png"));
+		Image refreshimRol = ImageIO.read(Processus.class.getResource("/Images/RefreshRolover.png"));
+		Image refreshimPre = ImageIO.read(Processus.class.getResource("/Images/RefreshPressed.png"));
 
-		Image parametreim = ImageIO.read(new File("src/Images/Engrenage.png"));
-		Image parametreimRol = ImageIO.read(new File("src/Images/EngrenageRolover.png"));
-		Image parametreimPre = ImageIO.read(new File("src/Images/EngrenagePressed.png"));
+		Image parametreim = ImageIO.read(Processus.class.getResource("/Images/Engrenage.png"));
+		Image parametreimRol = ImageIO.read(Processus.class.getResource("/Images/EngrenageRolover.png"));
+		Image parametreimPre = ImageIO.read(Processus.class.getResource("/Images/EngrenagePressed.png"));
 
-		Image utilisateurim = ImageIO.read(new File("src/Images/User.png"));
-		Image utilisateurimRol = ImageIO.read(new File("src/Images/UserRolover.png"));
-		Image utilisateurimPre = ImageIO.read(new File("src/Images/UserPressed.png"));
+		Image utilisateurim = ImageIO.read(Processus.class.getResource("/Images/User.png"));
+		Image utilisateurimRol = ImageIO.read(Processus.class.getResource("/Images/UserRolover.png"));
+		Image utilisateurimPre = ImageIO.read(Processus.class.getResource("/Images/UserPressed.png"));
 		
 		JPanel headingPrincipal = new JPanel();
 		headingPrincipal.setLayout(new BorderLayout());
@@ -186,9 +186,9 @@ public class Display {
 
 	private static void buildPageParametre(int buttonSize) throws IOException {
 		
-		Image arrowim = ImageIO.read(new File("src/Images/Arrow.png"));
-		Image arrowimRol = ImageIO.read(new File("src/Images/ArrowRolover.png"));
-		Image arrowimPre = ImageIO.read(new File("src/Images/ArrowPressed.png"));
+		Image arrowim = ImageIO.read(Processus.class.getResource("/Images/Arrow.png"));
+		Image arrowimRol = ImageIO.read(Processus.class.getResource("/Images/ArrowRolover.png"));
+		Image arrowimPre = ImageIO.read(Processus.class.getResource("/Images/ArrowPressed.png"));
 		
 		PageParametre.setLayout(new BorderLayout());
 		PageParametre.setBackground(Color.decode("#000000"));
@@ -265,9 +265,9 @@ public class Display {
 		PageUtilisateur.setLayout(new BorderLayout());
 		PageUtilisateur.setBackground(Color.decode("#000000"));
 		
-		Image arrowim = ImageIO.read(new File("src/Images/Arrow.png"));
-		Image arrowimRol = ImageIO.read(new File("src/Images/ArrowRolover.png"));
-		Image arrowimPre = ImageIO.read(new File("src/Images/ArrowPressed.png"));
+		Image arrowim = ImageIO.read(Processus.class.getResource("/Images/Arrow.png"));
+		Image arrowimRol = ImageIO.read(Processus.class.getResource("/Images/ArrowRolover.png"));
+		Image arrowimPre = ImageIO.read(Processus.class.getResource("/Images/ArrowPressed.png"));
 
 		JPanel headingUtili = new JPanel();
 		headingUtili.setLayout(new BorderLayout());
@@ -372,8 +372,10 @@ public class Display {
 
 //Donnes User //nb lancement application //nb fermeture procvessus (//nb fermeture moyenne)
 		//REMPLISSAGE DE DATA
+		System.out.println(Processus.class.getResource("/Images/Refresh.png"));
+		System.out.println(Processus.class.getResourceAsStream("/DonnesUser.txt"));
 		if (new File("./src/DonnesUser.txt").canRead()) {
-			Main.data = (ArrayList<String>) Interaction.extractMainProcess("./src/DonnesUser.txt");
+			Main.data = (ArrayList<String>) Interaction.extractMainProcess(Processus.class.getResourceAsStream("/DonnesUser.txt"));
 		//SI PAS DE FILE ON EN FABRIQUE UN
 		}else{
 			try {
@@ -386,14 +388,15 @@ public class Display {
 		}
 		//INITALISATION DATA SELON CONTENU 
     	if (Main.data.size() == 0) {
-			Interaction.putInFile("0\n0","src/DonnesUser.txt");
-			Main.data = (ArrayList<String>) Interaction.extractMainProcess("./src/DonnesUser.txt"); //nb lancement application //nb fermeture procvessus (//nb fermeture moyenne)
+			Interaction.putInFile("0\n0");
+			Main.data = (ArrayList<String>) Interaction.extractMainProcess(Processus.class.getResourceAsStream("/DonnesUser.txt")); //nb lancement application //nb fermeture procvessus (//nb fermeture moyenne)
 		}else {
-			Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1),"src/DonnesUser.txt");
+			Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1));
 		}
     	//nb lancement application ++
 		Main.data =  new ArrayList<>(Arrays.asList((Integer.parseInt(Main.data.get(0),10)+1) + "", Main.data.get(1)));
-		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1),"src/DonnesUser.txt");
+		Interaction.putInFile(Main.data.get(0) + "\n" + Main.data.get(1));
+		Interaction.putInFile("hola amigos");
 		
 //	    System.out.println(Main.data.get(0));
 //	    System.out.println(Main.data.get(1));

@@ -1,14 +1,10 @@
 package interaction;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 import UI.CalcImage;
 import main.Main;
@@ -88,7 +84,7 @@ public class Processus {
 	public static void loadAdminPic() {
 		Image errorPic = null;
 		try {
-			errorPic = ImageIO.read(new File("src/Images/Admin.png"));
+			errorPic = ImageIO.read(Processus.class.getResource("/Images/Admin.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
