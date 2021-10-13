@@ -463,7 +463,7 @@ public class Display {
 
 		// TIMER
 //		try {
-//			// TODO changer l'update
+//			// TO-DO changer l'update
 //			Thread.sleep(25000);
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();
